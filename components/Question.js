@@ -3,22 +3,22 @@ import { StyleSheet, Text, View, SafeAreaView, Button, TouchableOpacity } from '
 import styles from '../styles/style'
 
 const questions = {
-  'question1' : {
+  'question0' : {
     'prompt': 'What are we doing here?',
     'responses' : {
-      'response1': 'No one knows',
-      'response2': 'Someone knows, but not me',
-      'response3': 'I know, but no one else',
-      'response4': 'If I knew, we would not be here'
+      'response0': 'No one knows',
+      'response1': 'Someone knows, but not me',
+      'response2': 'I know, but no one else',
+      'response3': 'If I knew, we would not be here'
     }
   },
-  'question2' : {
+  'question1' : {
     'prompt': 'How are you doing?',
     'responses' : {
-      'response1': 'Great!',
-      'response2': 'Doing ok.',
-      'response3': 'Could be better.',
-      'response4': 'Not doing so hot.'
+      'response0': 'Great!',
+      'response1': 'Doing ok.',
+      'response2': 'Could be better.',
+      'response3': 'Not doing so hot.'
     }
   }
 }
@@ -27,7 +27,8 @@ class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reply: ""
+      reply: "",
+      question: 0
     };
   }
 
@@ -35,31 +36,48 @@ class Question extends Component {
     this.setState({ reply: "Reply: yeet" });
   };
 
+  renderResponses = () => {
+    console.log('rendering responses');
+    const responses = questions['question' + String(this.state.question)]['responses']
+    const buttons = [];
+    const temp = Object.keys(responses);
+    for (var i = 0; i < temp.length; i++) {
+      buttons.push(
+        <TouchableOpacity
+          key={i}
+          style={styles.responseContainer}
+          onPress={this.revealText}>
+
+          <Text>{responses[temp[i]]}</Text>
+        </TouchableOpacity>
+      );
+    };
+    return buttons;
+  }
+
 
   render() {
-    const q= questions['question1'];
-    const r = q['responses'];
     return (
       <View style={styles.surveyContainer}>
-        <Text style={styles.questionText}>{q['prompt']}</Text>
+        <Text style={styles.questionText}>
+        {console.log('question' + String(this.state.question))}
+        {console.log(Object.keys(questions).length)}
+        {console.log('state = ' + this.state.question)}
+          {questions['question' + String(this.state.question)]['prompt']}
+        </Text>
 
-        <TouchableOpacity style={styles.responseContainer} onPress={this.revealText}>
-          <Text>{r['response1']}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.responseContainer} onPress={this.revealText}>
-          <Text>{r['response2']}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.responseContainer} onPress={this.revealText}>
-          <Text>{r['response3']}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.responseContainer} onPress={this.revealText}>
-          <Text>{r['response4']}</Text>
-        </TouchableOpacity>
+        {this.renderResponses()}
 
         <Text>{this.state.reply}</Text>
+
+        <TouchableOpacity style={styles.responseContainer} onPress={() => {
+          this.setState({ question: this.state.question + 1});
+          console.log('comparing ' + this.state.question + ' to ' + Object.keys(questions).length);
+          // Why we have to - 1 here? 
+          this.state.question < Object.keys(questions).length - 1 ? this.renderResponses() : this.setState({ question : 0});
+        }}>
+          <Text>Next</Text>
+        </TouchableOpacity>
       </View>
   );
   }

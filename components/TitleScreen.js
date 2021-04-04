@@ -29,6 +29,14 @@ class TitleScreen extends Component {
           >
           <Text style={styles.menuText}>About</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.defaultButtonContainer}
+          onPress={() => this.props.navigation.navigate('History')}
+          >
+          <Text style={styles.menuText}>History</Text>
+        </TouchableOpacity>
+
       </SafeAreaView>
     );
   }
