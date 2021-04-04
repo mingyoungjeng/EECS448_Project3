@@ -8,7 +8,6 @@ class SurveyScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Take a survey here!</Text>
         <Question />
       </SafeAreaView>
     );

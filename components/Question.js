@@ -21,8 +21,9 @@ class Question extends Component {
     return (
       <>
         <Text>{q['prompt']}</Text>
-        <Text>{r['response1']}</Text>
-        <Text>{r['response2']}</Text>
+        <Button title={r['response1']}/>
+        <Button title={r['response2']}/>
+        <Button title={r['response3']}/>
       </>
   );
   }
