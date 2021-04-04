@@ -32,6 +32,14 @@ class App extends Component {
             options={{ title:"Settings" }}
           />
 
+          <Stack.Screen
+            name="FAQ"
+            component={SettingsScreen}
+            options={{ title:"About" }}
+          />
+
+
+
           </Stack.Navigator>
       </NavigationContainer>
     );
