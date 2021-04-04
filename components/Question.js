@@ -33,52 +33,72 @@ class Question extends Component {
   }
 
   revealText = () => {
-    this.setState({ reply: "Reply: yeet" });
+    this.setState({ reply: "Oh that's interesting to hear." });
   };
 
   renderResponses = () => {
     console.log('rendering responses');
-    const responses = questions['question' + String(this.state.question)]['responses']
-    const buttons = [];
-    const temp = Object.keys(responses);
-    for (var i = 0; i < temp.length; i++) {
-      buttons.push(
-        <TouchableOpacity
-          key={i}
-          style={styles.responseContainer}
-          onPress={this.revealText}>
+    var responses = "";
+    try {
+      const responses = questions['question' + String(this.state.question)]['responses']
+      const buttons = [];
+      const temp = Object.keys(responses);
+      for (var i = 0; i < temp.length; i++) {
+        buttons.push(
+          <TouchableOpacity
+            key={i}
+            style={styles.responseContainer}
+            onPress={this.revealText}>
 
-          <Text>{responses[temp[i]]}</Text>
-        </TouchableOpacity>
-      );
-    };
-    return buttons;
+            <Text>{responses[temp[i]]}</Text>
+          </TouchableOpacity>
+        );
+      };
+      return buttons;
+    } catch {
+      return "Loading";
+    }
+
   }
 
+  renderQuestion = () => {
+    console.log('Rendering question');
+    var prompt = "";
+    try {
+      prompt = questions['question' + String(this.state.question)]['prompt'];
+    }
+    catch {
+      prompt = "Loading...";
+    }
+    return <Text style={styles.questionText}>{prompt}</Text>;
+  }
 
   render() {
     return (
-      <View style={styles.surveyContainer}>
-        <Text style={styles.questionText}>
-        {console.log('question' + String(this.state.question))}
-        {console.log(Object.keys(questions).length)}
-        {console.log('state = ' + this.state.question)}
-          {questions['question' + String(this.state.question)]['prompt']}
-        </Text>
+      <>
+        <View style={styles.surveyContainer}>
+          {this.renderQuestion()}
 
-        {this.renderResponses()}
+          {this.renderResponses()}
 
-        <Text>{this.state.reply}</Text>
+          <TouchableOpacity style={styles.responseContainer} onPress={() => {
+            const newNum = this.state.question + 1;
+            this.setState({ question: newNum});
+            this.setState({ reply: ""});
+            if (newNum >= Object.keys(questions).length ) {
+              this.setState({ question: 0 });
+              this.props.navigation.navigate('Content');
+            }
+          }}>
+            <Text>Next</Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity style={styles.responseContainer} onPress={() => {
-          this.setState({ question: this.state.question + 1});
-          console.log('comparing ' + this.state.question + ' to ' + Object.keys(questions).length);
-          // Why we have to - 1 here? 
-          this.state.question < Object.keys(questions).length - 1 ? this.renderResponses() : this.setState({ question : 0});
-        }}>
-          <Text>Next</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.textContentContainer}>
+          <Text>{this.state.reply}</Text>
+        </View>
+
+      </>
   );
   }
 }

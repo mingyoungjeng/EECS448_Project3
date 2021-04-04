@@ -38,6 +38,14 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: 'black'
   },
+  textContentContainer: {
+    backgroundColor: '#aaa',
+    widthType: 'percentage',
+    width: '80%',
+    borderRadius: 10,
+    borderWidth: 5,
+    padding: '10px'
+  },
   titleText: {
     fontSize: 40,
     fontWeight: 'bold'
@@ -49,6 +57,10 @@ const styles = StyleSheet.create({
   questionText: {
     fontSize: 20,
     marginBottom: '10px'
+  },
+  contentText: {
+    fontSize: 30,
+    fontWeight: 'bold'
   }
 });
 

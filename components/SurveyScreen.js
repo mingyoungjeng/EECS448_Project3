@@ -8,7 +8,7 @@ class SurveyScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Question />
+        <Question navigation={this.props.navigation}/>
       </SafeAreaView>
     );
   }

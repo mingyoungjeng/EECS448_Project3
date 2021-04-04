@@ -7,6 +7,8 @@ import TitleScreen from './components/TitleScreen';
 import SettingsScreen from './components/SettingsScreen';
 import SurveyScreen from './components/SurveyScreen';
 import HistoryScreen from './components/HistoryScreen';
+import ContentScreen from './components/ContentScreen';
+import Faq from './components/Faq';
 
 const Stack = createStackNavigator();
 
@@ -36,17 +38,22 @@ class App extends Component {
           <Stack.Screen
 
             name="FAQ"
-            component={SettingsScreen}
+            component={Faq}
             options={{ title:"About" }}
           />
-
-
 
           <Stack.Screen
             name="History"
             component={HistoryScreen}
             options={{ title:"History" }}
           />
+
+          <Stack.Screen
+            name="Content"
+            component={ContentScreen}
+            opention={{ title:"Content" }}
+          />
+
 
 
           </Stack.Navigator>
