@@ -22,6 +22,13 @@ class TitleScreen extends Component {
             this.props.navigation.navigate('Settings')
           }
         />
+
+        <Button
+          title="History"
+          onPress={() =>
+            this.props.navigation.navigate('History')
+          }
+        />
       </SafeAreaView>
     );
   }
