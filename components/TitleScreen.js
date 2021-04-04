@@ -10,6 +10,13 @@ class TitleScreen extends Component {
         <Text>Welcome to this app!</Text>
 
         <Button
+          title="Let's get started ^^"
+          onPress={() =>
+            this.props.navigation.navigate('Survey')
+          }
+        />
+
+        <Button
           title="Settings"
           onPress={() =>
             this.props.navigation.navigate('Settings')

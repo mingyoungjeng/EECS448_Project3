@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TitleScreen from './components/TitleScreen';
 import SettingsScreen from './components/SettingsScreen';
+import SurveyScreen from './components/SurveyScreen';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,12 @@ class App extends Component {
             name="Title"
             component={TitleScreen}
             options={{ title:"Title"}}
+          />
+
+          <Stack.Screen
+            name="Survey"
+            component={SurveyScreen}
+            options={{ title:"Survey" }}
           />
 
           <Stack.Screen

@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  dialog: {
+    backgroundColor: '#aaa',
+    flex: 1
+  }
 });
 
 export default styles
