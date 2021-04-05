@@ -4,12 +4,12 @@ import styles from '../styles/style'
 
 const questions = {
   'question0' : {
-    'prompt': 'What are we doing here?',
+    'prompt': 'How would you describe your mood today?',
     'responses' : {
-      'response0': 'No one knows',
-      'response1': 'Someone knows, but not me',
-      'response2': 'I know, but no one else',
-      'response3': 'If I knew, we would not be here'
+      'response0': 'Jolly!',
+      'response1': 'Peaceful',
+      'response2': 'Peeved',
+      'response3': 'Depressed'
     }
   },
   'question1' : {
