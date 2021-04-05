@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   defaultButtonContainer: {
     color: '#fff',
-    backgroundColor: '#bbb',
+    backgroundColor: '#ddd',
     paddingVertical: 12,
     paddingHorizontal: 20,
     margin: '10px',
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#aaa',
     widthType: 'percentage',
     width: '80%',
+    margin: '10px',
     borderRadius: 10,
     borderWidth: 5,
     padding: '10px'
@@ -57,6 +58,9 @@ const styles = StyleSheet.create({
   questionText: {
     fontSize: 20,
     marginBottom: '10px'
+  },
+  responseText: {
+    fontSize: 15
   },
   contentText: {
     fontSize: 30,
