@@ -20,7 +20,28 @@ const questions = {
       'response2': 'Could be better.',
       'response3': 'Not doing so hot.'
     }
-  }
+  },
+  'question2' : {
+    'prompt': 'Describe today in a color?',
+    'responses' : {
+      'response0': 'Red',
+      'response1': 'Orange',
+      'response2': 'Yellow',
+      'response3': 'Green',
+      'response4': 'Blue',
+      'response5': 'Indigo',
+      'response6': 'Violet'
+    }
+  },
+  'question3' : {
+    'prompt': 'Have you felt anxious, restless or tense today?',
+    'responses' : {
+      'response0': 'OMG yes!',
+      'response1': 'I guess so.',
+      'response2': 'Not really',
+      'response3': 'Cool as a cucumber, dude.'
+    }
+  },
 }
 
 class Question extends Component {
@@ -47,10 +68,10 @@ class Question extends Component {
         buttons.push(
           <TouchableOpacity
             key={i}
-            style={styles.responseContainer}
+            style={styles.defaultButtonContainer}
             onPress={this.revealText}>
 
-            <Text>{responses[temp[i]]}</Text>
+            <Text style={styles.responseText}>{responses[temp[i]]}</Text>
           </TouchableOpacity>
         );
       };
@@ -81,7 +102,7 @@ class Question extends Component {
 
           {this.renderResponses()}
 
-          <TouchableOpacity style={styles.responseContainer} onPress={() => {
+          <TouchableOpacity style={styles.defaultButtonContainer} onPress={() => {
             const newNum = this.state.question + 1;
             this.setState({ question: newNum});
             this.setState({ reply: ""});
@@ -95,7 +116,7 @@ class Question extends Component {
         </View>
 
         <View style={styles.textContentContainer}>
-          <Text>{this.state.reply}</Text>
+          <Text style={styles.responseText}>{this.state.reply}</Text>
         </View>
 
       </>

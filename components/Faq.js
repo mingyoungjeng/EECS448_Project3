@@ -8,13 +8,14 @@ class Faq extends Component {
     return (
       <SafeAreaView style={styles.container}>
 
-      <Text> This is an app that helps  track your mood and gives your motivation quotes based on your responses </Text>
-
+      <View style={styles.textContentContainer}>
+        <Text style={styles.responseText}> This is an app that helps  track your mood and gives your motivation quotes based on your responses </Text>
+      </View>
       <TouchableOpacity
         style={styles.defaultButtonContainer}
         onPress={() => this.props.navigation.navigate('Title')}
         >
-        <Text>Title</Text>
+        <Text style={styles.menuText}>Return</Text>
       </TouchableOpacity>
       </SafeAreaView>
     );

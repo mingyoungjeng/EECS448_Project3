@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
 import styles from '../styles/style'
 
 
@@ -7,21 +7,26 @@ class SettingsScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Set your settings here</Text>
+        <Text style={styles.titleText}>Set your settings here</Text>
 
-        <Button
-          title="Button1"
-          onPress={() => console.log("Button 1 pressed")}
-        />
+        <TouchableOpacity
+          style={styles.defaultButtonContainer}
+          >
+          <Text style={styles.menuText}>Change User?</Text>
+        </TouchableOpacity>
 
-        <Button
-          title="Title"
-          onPress={() =>
-            this.props.navigation.navigate('Title')
-          }
-        />
+        <TouchableOpacity
+          style={styles.defaultButtonContainer}
+          >
+          <Text style={styles.menuText}>Change Theme?</Text>
+        </TouchableOpacity>
 
-
+        <TouchableOpacity
+          style={styles.defaultButtonContainer}
+          onPress={() => this.props.navigation.navigate('Title')}
+          >
+          <Text style={styles.menuText} >Return</Text>
+        </TouchableOpacity>
       </SafeAreaView>
     );
   }

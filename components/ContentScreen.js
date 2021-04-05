@@ -14,7 +14,7 @@ class ContentScreen extends Component {
           style={styles.defaultButtonContainer}
           onPress={() => this.props.navigation.navigate('Title')}
           >
-          <Text>Title</Text>
+          <Text style={styles.menuText}>Return</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );
