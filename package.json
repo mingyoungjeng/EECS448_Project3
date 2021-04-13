@@ -1,0 +1,32 @@
+{
+  "name": "cian",
+  "version": "1.0.0",
+  "description": "An app that helps with mental health awareness",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "cd client && npm i",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mingyoungjeng/EECS448_Project3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mingyoungjeng/EECS448_Project3/issues"
+  },
+  "homepage": "https://github.com/mingyoungjeng/EECS448_Project3#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7"
+  }
+}
