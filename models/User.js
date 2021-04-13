@@ -3,9 +3,11 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const UserSchema = new Schema({
-    name: {
+    username: {
         type: String,
-        required: true
+        required: true,
+        minLength: 4,
+        maxLength: 15
     },
     date: {
         type: Date,

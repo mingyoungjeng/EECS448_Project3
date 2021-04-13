@@ -9,6 +9,8 @@ import SurveyScreen from './components/SurveyScreen';
 import HistoryScreen from './components/HistoryScreen';
 import ContentScreen from './components/ContentScreen';
 import Faq from './components/Faq';
+import LoginScreen from './components/LoginScreen';
+
 
 const Stack = createStackNavigator();
 
@@ -51,10 +53,14 @@ class App extends Component {
           <Stack.Screen
             name="Content"
             component={ContentScreen}
-            opention={{ title:"Content" }}
+            options={{ title:"Content" }}
           />
 
-
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ title:"Login" }}
+          />
 
           </Stack.Navigator>
       </NavigationContainer>

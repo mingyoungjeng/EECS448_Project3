@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
         .then(() => {
             console.log(`New users ${newUser.username} added to the database...`);
             res.send(newUser);})
-        .catch(err => console.log(err));
+        .catch(err => res.send(err));
     
 });
 

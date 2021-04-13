@@ -7,7 +7,14 @@ class TitleScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.titleText}>APP NAME!</Text>
+        <Text style={styles.titleText}>CIAN!</Text>
+
+        <TouchableOpacity
+          style={styles.defaultButtonContainer}
+          onPress={() => this.props.navigation.navigate('Login')}
+          >
+          <Text style={styles.menuText}>Login</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.defaultButtonContainer}
