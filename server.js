@@ -4,10 +4,16 @@ const bodyParser = require('body-parser');
 
 // Routing
 const users = require('./routes/api/users');
+const history = require('./routes/api/history');
 
 // Start express and setup middleware
 const app = express();
 app.use(bodyParser.json());
+
+
+const cors = require('cors');
+app.use(cors());
+
 
 // DB Config - get MongoDB uri
 const db = require('./config/keys').mongoURI;
@@ -20,6 +26,7 @@ mongoose
 
 // Routes
 app.use('/api/users', users);
+app.use('/api/history', history);
 
 const port = process.env.PORT || 5000;
 

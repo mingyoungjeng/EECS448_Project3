@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-// Necessary for development? Cannot access server from same origin
-const cors = require('cors');
-router.use(cors());
+// // Necessary for development? Cannot access server from same origin
+// const cors = require('cors');
+// router.use(cors());
 
 // Get model
 const History = require('../../models/History');
