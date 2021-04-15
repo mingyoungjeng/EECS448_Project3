@@ -8,31 +8,53 @@ const bad = {key:'bad', color: 'red'};
 const medium = {key:'medium', color: 'yellow'}; // selectedDotColor: 'blue'}
 const good = {key:'good', color: 'green'};
 
-console.log(`creating user`);
-axios.post('http://localhost:5000/api/history', {
-  condition: "bad"
-})
-  .then(res => console.log(res))
-  .catch(err => console.log(err));
+async function getHistory() {
+  let markedDates = {};
+  await axios.get('http://localhost:5000/api/history')
+    .then(function (res) {
+      for (var x of res.data) {
+        var date = new Date(x.date);
+        var dateString = date.getFullYear() + "-";
 
-function yeet() {
-  let dates = axios.get('http://localhost:5000/api/history');
-  console.log(dates);
+        if ((date.getMonth() / 9) < 1) {
+          dateString += "0";
+        }
+
+        dateString += (date.getMonth() + 1) + "-";
+
+        if ((date.getDate() / 10) < 1) {
+          dateString += "0";
+        }
+
+        dateString += date.getDate();
+
+        var dots = {dots: []};
+        if (x.condition === "bad") {
+          dots.dots.push(bad);
+        }
+        if (x.condition === "medium") {
+          dots.dots.push(medium);
+        }
+        if (x.condition === "good") {
+          dots.dots.push(good);
+        }
+        
+        markedDates[dateString] = dots;
+      }
+    });
+  return markedDates;
 }
 
 class HistoryScreen extends Component {
   render() {
 
-    yeet();
+    var test = getHistory();
+    console.log(test);
 
     return (
       <SafeAreaView style={styles.container}>
         <Calendar
-        	markedDates={{
-        	    '2021-04-01': {dots: [bad]},
-        	    '2021-04-02': {dots: [good]},
-        	    '2021-04-03': {dots: [medium]}
-        	  }}
+        	markedDates={test}
         	  markingType={'multi-dot'}
         />
 
