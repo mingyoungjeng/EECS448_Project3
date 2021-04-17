@@ -1,22 +1,22 @@
 const express = require('express');
 const router = express.Router();
 
-// // Necessary for development? Cannot access server from same origin
-// const cors = require('cors');
-// router.use(cors());
+// Load middleware
+const auth = require('../../middleware/auth');
 
 // Get model
 const History = require('../../models/History');
 
 // GET api
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
     History.find()
         .then(history => res.json(history))
         .catch(err => console.log(err));
 });
 
 // POST api
-router.post('/', (req, res) => {
+// Add authorization so users cannot update history without token
+router.post('/', auth, (req, res) => {
     // Construct new item
     const newSummary = new History({
         condition: req.body.condition

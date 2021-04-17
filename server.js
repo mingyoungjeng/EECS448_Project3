@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 // Routing
 const users = require('./routes/api/users');
 const history = require('./routes/api/history');
+const auth = require('./routes/api/authorization');
 
 // Start express and setup middleware
 const app = express();
@@ -20,13 +21,14 @@ const db = require('./config/keys').mongoURI;
 
 // Connect to Mongo with uri
 mongoose
-    .connect(db, { useUnifiedTopology: true , useNewUrlParser: true })
+    .connect(db, { useUnifiedTopology: true , useNewUrlParser: true, useCreateIndex: true })
     .then(() => console.log('MongoDB connected...'))
     .catch(err => console.log(err));
 
 // Routes
 app.use('/api/users', users);
 app.use('/api/history', history);
+app.use('/api/authorization', auth);
 
 const port = process.env.PORT || 5000;
 
