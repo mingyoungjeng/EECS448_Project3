@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Alert } from 'react-native';
 import styles from '../styles/style'
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const bad = {key:'bad', color: 'red'};
 const medium = {key:'medium', color: 'yellow'}; // selectedDotColor: 'blue'}
@@ -18,7 +19,20 @@ class HistoryScreen extends Component {
 
   async getHistory() {
     let markedDates = {};
-    await axios.get('http://localhost:5000/api/history')
+
+    let token = await AsyncStorage.getItem('token');
+          token = JSON.parse(token);
+          console.log(token);
+
+          console.log("Retrieving info...");
+          await axios.get('http://localhost:5000/api/history', {
+            params: {
+              username: this.state.username,
+              password: this.state.password
+            },
+            headers: {
+            'x-auth-token': token.data
+          }})
       .then(function (res) {
         for (var x of res.data) {
           var date = new Date(x.date);

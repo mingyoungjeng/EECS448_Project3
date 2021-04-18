@@ -99,21 +99,25 @@ class LoginScreen extends Component {
       <TouchableOpacity 
         style={ styles.defaultButtonContainer }
         onPress = {async () => {
-          let token = await AsyncStorage.getItem('token');
-          token = JSON.parse(token);
-          console.log(token);
+          let token = await AsyncStorage.getItem('token')
+            .catch(err => console.log(err));
 
-          console.log("Retrieving info...");
-          axios.get('http://localhost:5000/api/users/me', {
-            params: {
-              username: this.state.username,
-              password: this.state.password
-            },
-            headers: {
-            'x-auth-token': token.data
-          }})
-            .then(res => console.log(res))
-            .catch(err => console.error(err));
+          if (token) {
+            token = JSON.parse(token);
+            console.log(token);
+  
+            console.log("Retrieving info...");
+            axios.get('http://localhost:5000/api/users/me', {
+              params: {
+                username: this.state.username,
+                password: this.state.password
+              },
+              headers: {
+              'x-auth-token': token.data
+            }})
+              .then(res => console.log(res))
+              .catch(err => console.error(err));
+          }
         }}
       >
       <Text>Get info</Text>
