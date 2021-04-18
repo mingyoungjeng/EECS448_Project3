@@ -25,18 +25,17 @@ class HistoryScreen extends Component {
     let markedDates = {};
 
     let token = await AsyncStorage.getItem('token');
-          token = JSON.parse(token);
-          // console.log(token);
+    token = JSON.parse(token);
 
-          console.log("Retrieving info...");
-          await axios.get('http://localhost:5000/api/history', {
-            params: {
-              username: this.state.username,
-              password: this.state.password
-            },
-            headers: {
-            'x-auth-token': token.data
-          }})
+    console.log("Retrieving info...");
+    await axios.get('http://localhost:5000/api/history', {
+      params: {
+        username: this.state.username,
+        password: this.state.password
+      },
+      headers: {
+      'x-auth-token': token.data
+    }})
       .then(function (res) {
         console.log(res);
         for (var x of res.data.history) {
