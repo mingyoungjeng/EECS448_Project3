@@ -38,7 +38,8 @@ class HistoryScreen extends Component {
             'x-auth-token': token.data
           }})
       .then(function (res) {
-        for (var x of res.data) {
+        console.log(res);
+        for (var x of res.data.history) {
           var date = new Date(x.date);
           var dateString = date.getFullYear() + "-";
 
@@ -67,8 +68,10 @@ class HistoryScreen extends Component {
           
           markedDates[dateString] = dots;
         }
-      });
+      })
+      .catch((err) => console.log(err));
     this.state.markers = markedDates;
+    console.log(markedDates);
     this.forceUpdate();
   }
 

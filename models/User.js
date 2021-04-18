@@ -28,7 +28,11 @@ const UserSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    history: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'History'
+    }]
 });
 
 UserSchema.methods.generateAuthToken = function() {
@@ -37,4 +41,4 @@ UserSchema.methods.generateAuthToken = function() {
 };
 
 // Create model from schema and export
-module.exports = User = mongoose.model('user', UserSchema);
+module.exports = User = mongoose.model('User', UserSchema);
