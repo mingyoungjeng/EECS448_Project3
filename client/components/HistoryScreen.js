@@ -17,12 +17,16 @@ class HistoryScreen extends Component {
     };
   }
 
+  componentDidMount() {
+    this.getHistory();
+  }
+
   async getHistory() {
     let markedDates = {};
 
     let token = await AsyncStorage.getItem('token');
           token = JSON.parse(token);
-          console.log(token);
+          // console.log(token);
 
           console.log("Retrieving info...");
           await axios.get('http://localhost:5000/api/history', {
@@ -69,7 +73,6 @@ class HistoryScreen extends Component {
   }
 
   render() {
-    this.getHistory();
     return (
       <SafeAreaView style={styles.container}>
         <Calendar
