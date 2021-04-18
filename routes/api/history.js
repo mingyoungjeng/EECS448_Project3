@@ -58,8 +58,8 @@ router.post('/', auth, (req, res) => {
 
         // Save the user to the database
         newSummary.save()
-        .then(() => { console.log(`Adding new daily summary to the database...`) })
-        .catch(err => res.send(err));
+            .then(() => { console.log(`Adding new daily summary to the database...`) })
+            .catch(err => res.send(err));
 
         
 

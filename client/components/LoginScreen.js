@@ -81,7 +81,7 @@ class LoginScreen extends Component {
           console.log("Retrieving info...");
           axios.post('http://localhost:5000/api/authorization', {
             username: this.state.username,
-            // email: this.state.email,
+            email: this.state.email,
             password: this.state.password
           })
             .then( async (res) => {

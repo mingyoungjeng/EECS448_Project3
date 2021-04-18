@@ -13,8 +13,24 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     // Allow users to log in with their their username or their email.
-    let user = await User.findOne({ username: req.body.username });
-    if (!user) return res.status(400).send('User not found');
+    var user;
+
+    if (req.body.username) {
+        user = await User.findOne({ username: req.body.username });
+    } else if (req.body.email) {
+        user = await User.findOne({ email: req.body.email });
+    } else {
+        console.log("No username or email entered...");
+        return res.status(400).send('User not found');
+    }
+
+    // if (!user) {
+    //     console.log("Failed to authenticate username...");
+    //     user = await User.findOne({ email: req.body.email });
+    //     if (!user) {
+    //         console.log("Failed to authenticate email...");
+        // } return res.status(400).send('User not found');
+    // }
 
     let validUser = (req.body.email == user.email || req.body.username == user.username);
     if (!validUser) return res.status(400).send('Invalid credentials');
