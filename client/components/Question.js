@@ -49,11 +49,13 @@ class Question extends Component {
     super(props);
     this.state = {
       reply: "",
-      question: 0
+      question: 0,
+      responses: []
     };
   }
 
-  revealText = () => {
+  revealText = (weight, max) => {
+    this.state.responses.push(weight/(max-1));
     this.setState({ reply: "Oh that's interesting to hear." });
   };
 
@@ -65,11 +67,12 @@ class Question extends Component {
       const buttons = [];
       const temp = Object.keys(responses);
       for (var i = 0; i < temp.length; i++) {
+        let j = i;
         buttons.push(
           <TouchableOpacity
-            key={i}
+            key={j}
             style={styles.defaultButtonContainer}
-            onPress={this.revealText}>
+            onPress={() => this.revealText(j, temp.length)}>
 
             <Text style={styles.responseText}>{responses[temp[i]]}</Text>
           </TouchableOpacity>
@@ -95,6 +98,7 @@ class Question extends Component {
   }
 
   render() {
+
     return (
       <>
         <View style={styles.surveyContainer}>
@@ -107,8 +111,23 @@ class Question extends Component {
             this.setState({ question: newNum});
             this.setState({ reply: ""});
             if (newNum >= Object.keys(questions).length ) {
+              let avg = 0;
+              for (var i of this.state.responses) {
+                avg += i;
+              }
+              avg /= this.state.responses.length
+              console.log("Average: " + avg);
+
+              var condition = "neutral";
+              if (avg <= (1/3)) {
+                condition = "bad";
+              } else if (avg > (2/3)) {
+                condition = "good";
+              }
+              console.log("Condition is: " + condition);
+
               this.setState({ question: 0 });
-              this.props.navigation.navigate('Content');
+              this.props.navigation.navigate('Content', {condition: condition});
             }
           }}>
             <Text>Next</Text>

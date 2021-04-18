@@ -3,11 +3,21 @@ import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, FlatList
 import styles from '../styles/style'
 import axios from 'axios';
 
+
+let searchTerms = {
+  "bad": ["feel better", "inspiring", "hugs"],
+  "neutral": ["cute", "puppy"],
+  "good": ["good job", "cool"]
+}
+
 class ContentScreen extends Component {
   state = {gif: ""};
 
   componentDidMount() {
-    axios.get("https://api.giphy.com/v1/gifs/translate?api_key=FxNx8bWzHL1OToRmoQb7vAUEIqhgKCHo&s=" + "inspiring")
+    let condition = this.props.route.params.condition;
+    let searchTerm = searchTerms[condition][Math.floor(Math.random() * searchTerms[condition].length)];
+    console.log("Finding gif with search: " + searchTerm);
+    axios.get("https://api.giphy.com/v1/gifs/translate?api_key=FxNx8bWzHL1OToRmoQb7vAUEIqhgKCHo&s=" + searchTerm)
       .then(res => {
         this.setState({ gif: res.data.data});
         console.log(this.state.gif);
