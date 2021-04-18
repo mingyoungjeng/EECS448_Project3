@@ -65,6 +65,10 @@ const styles = StyleSheet.create({
   contentText: {
     fontSize: 30,
     fontWeight: 'bold'
+  },
+  image: {
+    width: 300,
+    height: 300
   }
 });
 
