@@ -55,15 +55,18 @@ class HistoryScreen extends Component {
 
           dateString += date.getDate();
 
-          var dots = {dots: []};
+          var dots = {};
           if (x.condition === "bad") {
-            dots.dots.push(bad);
+            dots.selected = true;
+            dots.selectedColor = "red";
           }
           if (x.condition === "medium") {
-            dots.dots.push(medium);
+            dots.selected = true;
+            dots.selectedColor = "gray";
           }
           if (x.condition === "good") {
-            dots.dots.push(good);
+            dots.selected = true;
+            dots.selectedColor = "green";
           }
           
           markedDates[dateString] = dots;
@@ -80,7 +83,6 @@ class HistoryScreen extends Component {
       <SafeAreaView style={styles.container}>
         <Calendar
           markedDates={this.state.markers}
-            markingType={'multi-dot'}
         />
 
 
