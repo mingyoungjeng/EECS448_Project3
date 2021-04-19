@@ -29,7 +29,7 @@ class ContentScreen extends Component {
   async storeCondition() {
     let token = await AsyncStorage.getItem('token');
     token = JSON.parse(token);
-    axios.get('http://localhost:5000/api/history', {
+    axios.post('http://localhost:5000/api/history', {
       params: {
         condition: this.props.route.params.condition
       },
