@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, FlatList, Image } from 'react-native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 let searchTerms = {
@@ -13,16 +14,8 @@ class ContentScreen extends Component {
   state = {gif: ""};
 
   componentDidMount() {
+    this.storeCondition();
     let condition = this.props.route.params.condition;
-    let token = await AsyncStorage.getItem('token');
-    token = JSON.parse(token);
-    axios.get('http://localhost:5000/api/history', {
-      params: {
-        condition: this.state.condition
-      },
-      headers: {
-      'x-auth-token': token.data
-    }})
 
     let searchTerm = searchTerms[condition][Math.floor(Math.random() * searchTerms[condition].length)];
     console.log("Finding gif with search: " + searchTerm);
@@ -31,6 +24,18 @@ class ContentScreen extends Component {
         this.setState({ gif: res.data.data});
         console.log(this.state.gif);
       });
+  }
+
+  async storeCondition() {
+    let token = await AsyncStorage.getItem('token');
+    token = JSON.parse(token);
+    axios.get('http://localhost:5000/api/history', {
+      params: {
+        condition: this.props.route.params.condition
+      },
+      headers: {
+      'x-auth-token': token.data
+    }})
   }
 
   render() {
