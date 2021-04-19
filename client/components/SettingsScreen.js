@@ -6,6 +6,7 @@ import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert } from 'r
 class SettingsScreen extends Component {
   constructor(props) {
     super(props);
+    global.style = StyleSheet.create(require('../styles/test.json'));
   }
 
   logOut = async () => {
