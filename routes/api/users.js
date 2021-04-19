@@ -41,19 +41,12 @@ router.post('/', async (req, res) => {
         .then(() => newUser.save() )
         .then(() => {
             console.log(`New users ${newUser.username} added to the database...`)})
-            // res.send(newUser);})
-        .catch(err => console.log(err));
-
-    // Save the user to the database
-    // Is this the right place to encrypt the password?
-    // newUser.save()
+        .catch(err => res.status(409).send(err));
 
     console.log("Creating token");
     const token = newUser.generateAuthToken();
     // Send token back, because can't figure out how to do anything else
-    res.send(token);
-    // res.header('x-auth-token', token).send(newUser);
-    
+    res.send(token);    
 });
 
 router.delete('/:id', (req, res) => {

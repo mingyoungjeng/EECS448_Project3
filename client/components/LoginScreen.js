@@ -21,7 +21,7 @@ class LoginScreen extends Component {
 
   // User registers account with username
   register = (username, email, password) => {
-    console.log(`creating user: ${username}, ${email}`);
+    console.log(`Attempting to create user: ${username}, ${email}`);
 
     // Encrypt password before sending to server
     axios.post('http://localhost:5000/api/users', {
@@ -31,9 +31,10 @@ class LoginScreen extends Component {
     })
       .then(async (token) => {
         // Store token in local storage
+        console.log( {success: true});
         await AsyncStorage.setItem('token', JSON.stringify(token));
       })
-      .catch(err => console.error(err));      
+      .catch(err => alert("User already exists"));      
   }
 
   render() {

@@ -6,12 +6,16 @@ import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert } from 'r
 class SettingsScreen extends Component {
   constructor(props) {
     super(props);
-    global.style = StyleSheet.create(require('../styles/test.json'));
+    // global.style = StyleSheet.create(require('../styles/test.json'));
   }
 
   logOut = async () => {
-    var token = await AsyncStorage.removeItem('token')
-      .then( { result: 'success' } )
+    await AsyncStorage.removeItem('token')
+      .then(token => {
+        console.log('Logging out...');
+        alert("Logged Out");
+
+      })
       .catch(err => console.log(err));
   }
 

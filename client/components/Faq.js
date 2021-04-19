@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, TouchableOpacity } from 'react-native';
-import styles from '../styles/style'
+// import styles from '../styles/style'
 
 
 class Faq extends Component {
