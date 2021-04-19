@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Alert } from 'react-native';
-import styles from '../styles/style'
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -79,7 +78,7 @@ class HistoryScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={global.style.container}>
         <Calendar
           markedDates={this.state.markers}
         />

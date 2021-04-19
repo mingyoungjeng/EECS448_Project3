@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
-import styles from '../styles/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Set up clientside encryption
@@ -39,23 +38,23 @@ class LoginScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={global.style.container}>
 
-      <View style={styles.textContentContainer}>
+      <View style={global.style.textContentContainer}>
         <Text> Login or Register Below </Text>
       </View>
 
-      <TextInput style={styles.textContentContainer}
+      <TextInput style={global.style.textContentContainer}
         placeholder="username"
         onChangeText={text => this.setState({ username: text})}
         defaultValue={this.text}
       />
-      <TextInput style={styles.textContentContainer}
+      <TextInput style={global.style.textContentContainer}
         placeholder="email"
         onChangeText={text => this.setState({ email: text})}
         defaultValue={this.text}
       />
-      <TextInput style={styles.textContentContainer}
+      <TextInput style={global.style.textContentContainer}
         placeholder="password"
         onChangeText={text => this.setState({ password: text})}
         defaultValue={this.text}
@@ -64,7 +63,7 @@ class LoginScreen extends Component {
      
 
       <TouchableOpacity
-        style={styles.defaultButtonContainer}
+        style={global.style.defaultButtonContainer}
         // Add networking capability to submit button
         onPress = {() => {
           console.log(this.state);
@@ -76,7 +75,7 @@ class LoginScreen extends Component {
       </TouchableOpacity>
 
       <TouchableOpacity 
-        style={ styles.defaultButtonContainer }
+        style={ global.style.defaultButtonContainer }
         onPress = {() => {
           console.log("Retrieving info...");
           axios.post('http://localhost:5000/api/authorization', {
@@ -97,7 +96,7 @@ class LoginScreen extends Component {
       </TouchableOpacity>
 
       <TouchableOpacity 
-        style={ styles.defaultButtonContainer }
+        style={ global.style.defaultButtonContainer }
         onPress = {async () => {
           let token = await AsyncStorage.getItem('token')
             .catch(err => console.log(err));
@@ -124,10 +123,10 @@ class LoginScreen extends Component {
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.defaultButtonContainer}
+        style={global.style.defaultButtonContainer}
         onPress={() => this.props.navigation.navigate('Title')}
         >
-        <Text style={styles.menuText}>Return</Text>
+        <Text style={global.style.menuText}>Return</Text>
       </TouchableOpacity>
       </SafeAreaView>
     );

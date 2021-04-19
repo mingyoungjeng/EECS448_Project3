@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, TouchableOpacity } from 'react-native';
-import styles from '../styles/style'
 
 const questions = {
   'question0' : {
@@ -71,10 +70,10 @@ class Question extends Component {
         buttons.push(
           <TouchableOpacity
             key={j}
-            style={styles.defaultButtonContainer}
+            style={global.style.defaultButtonContainer}
             onPress={() => this.revealText(j, temp.length)}>
 
-            <Text style={styles.responseText}>{responses[temp[i]]}</Text>
+            <Text style={global.style.responseText}>{responses[temp[i]]}</Text>
           </TouchableOpacity>
         );
       };
@@ -94,19 +93,19 @@ class Question extends Component {
     catch {
       prompt = "Loading...";
     }
-    return <Text style={styles.questionText}>{prompt}</Text>;
+    return <Text style={global.style.questionText}>{prompt}</Text>;
   }
 
   render() {
 
     return (
       <>
-        <View style={styles.surveyContainer}>
+        <View style={global.style.surveyContainer}>
           {this.renderQuestion()}
 
           {this.renderResponses()}
 
-          <TouchableOpacity style={styles.defaultButtonContainer} onPress={() => {
+          <TouchableOpacity style={global.style.defaultButtonContainer} onPress={() => {
             const newNum = this.state.question + 1;
             this.setState({ question: newNum});
             this.setState({ reply: ""});
@@ -134,8 +133,8 @@ class Question extends Component {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.textContentContainer}>
-          <Text style={styles.responseText}>{this.state.reply}</Text>
+        <View style={global.style.textContentContainer}>
+          <Text style={global.style.responseText}>{this.state.reply}</Text>
         </View>
 
       </>
