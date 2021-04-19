@@ -28,10 +28,6 @@ class HistoryScreen extends Component {
 
     console.log("Retrieving info...");
     await axios.get('http://localhost:5000/api/history', {
-      params: {
-        username: this.state.username,
-        password: this.state.password
-      },
       headers: {
       'x-auth-token': token.data
     }})

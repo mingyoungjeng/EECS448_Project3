@@ -12,18 +12,13 @@ const User = require('../../models/User');
 
 // GET api
 router.get('/', auth, (req, res) => {
-    const token = req.header('x-auth-token');
-    // If no token is found
-    if (!token) return res.status(401).send('No token provided');
-    
-    var userID;
     try {
-        const payload = jwt.verify(token, 'privateKey');
-        console.log('Got payload...');
-        console.log(payload._id);
-        userID = payload._id;
+        // const payload = jwt.verify(token, 'privateKey');
+        // console.log('Got payload...');
+        // console.log(payload._id);
+        // userID = payload._id;
 
-        User.findById(userID, 'history')
+        User.findById(req.user, 'history')
             .populate("history")
             .exec((err, history) => {
                 res.json(history);
@@ -35,28 +30,16 @@ router.get('/', auth, (req, res) => {
 
 // POST api
 // Add authorization so users cannot update history without token
-router.post('/', auth, (req, res) => {
-    
-    const token = req.header('x-auth-token');
-    // If no token is found
-    if (!token) return res.status(401).send('No token provided');
-    
-    var userID;
+router.post('/', auth, async (req, res) => {
     try {
-        const payload = jwt.verify(token, 'privateKey');
-        console.log('Got payload...');
-        console.log(payload._id);
-        userID = payload._id;
-        // payload contains _id. Use to link history to user
-        
-        var user = User.findById(userID);
+        var user = await User.findById(req.user);
         
         // Construct new item
         const newSummary = new History({
             condition: req.body.condition
         });
 
-        // Save the user to the database
+        // Save the history to the database
         newSummary.save()
             .then(() => { console.log(`Adding new daily summary to the database...`) })
             .catch(err => res.send(err));
@@ -64,16 +47,15 @@ router.post('/', auth, (req, res) => {
         
 
         User.findByIdAndUpdate(
-            userID, 
+            req.user, 
             {$push: {"history": newSummary}},
             { upsert: true },
             function(err, result) {
                 if (err) {
-                    res.send(err);
-                } else {
-                    res.send(result);
-                }
+                    console.log(err);
+                } 
             })
+            .catch(err => console.log(err));
     } catch (error) {
         console.log(error);
     }

@@ -32,7 +32,7 @@ class ContentScreen extends Component {
     axios.post('http://localhost:5000/api/history', {
       params: {
         condition: this.props.route.params.condition
-      },
+      }}, {
       headers: {
       'x-auth-token': token.data
     }})

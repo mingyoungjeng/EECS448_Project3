@@ -9,11 +9,12 @@ const auth = require('./routes/api/authorization');
 
 // Start express and setup middleware
 const app = express();
+const cors = require('cors');
+app.use(cors());
+app.use(cors( { headers: ['x-auth-token']} ));
 app.use(bodyParser.json());
 
 
-const cors = require('cors');
-app.use(cors());
 
 
 // DB Config - get MongoDB uri
