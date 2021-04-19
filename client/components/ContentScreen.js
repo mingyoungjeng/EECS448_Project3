@@ -14,6 +14,16 @@ class ContentScreen extends Component {
 
   componentDidMount() {
     let condition = this.props.route.params.condition;
+    let token = await AsyncStorage.getItem('token');
+    token = JSON.parse(token);
+    axios.get('http://localhost:5000/api/history', {
+      params: {
+        condition: this.state.condition
+      },
+      headers: {
+      'x-auth-token': token.data
+    }})
+
     let searchTerm = searchTerms[condition][Math.floor(Math.random() * searchTerms[condition].length)];
     console.log("Finding gif with search: " + searchTerm);
     axios.get("https://api.giphy.com/v1/gifs/translate?api_key=FxNx8bWzHL1OToRmoQb7vAUEIqhgKCHo&s=" + searchTerm)
