@@ -13,8 +13,10 @@ import LoginScreen from './components/LoginScreen';
 
 
 const Stack = createStackNavigator();
+global.style = StyleSheet.create(require('./styles/default.json'));
 
 class App extends Component {
+
   render() {
     return (
       <NavigationContainer>

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, FlatList, Image } from 'react-native';
-import styles from '../styles/style'
 import axios from 'axios';
 
 
@@ -28,30 +27,30 @@ class ContentScreen extends Component {
 
     if (this.state.gif === "") {
       return (
-        <SafeAreaView style={styles.container}>
-          <View style={styles.textContentContainer}>
-            <Text style={styles.contentText}>Loading...</Text>
+        <SafeAreaView style={global.style.container}>
+          <View style={global.style.textContentContainer}>
+            <Text style={global.style.contentText}>Loading...</Text>
           </View>
         </SafeAreaView>
       );
     }
 
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.textContentContainer}>
-          <Text style={styles.contentText}>Go do whatever you need to do. Get off your phone already!</Text>
+      <SafeAreaView style={global.style.container}>
+        <View style={global.style.textContentContainer}>
+          <Text style={global.style.contentText}>Go do whatever you need to do. Get off your phone already!</Text>
         </View>
 
         <Image
-          style={styles.image}
+          style={global.style.image}
           source={{uri: this.state.gif.images.original.url}}
         />
 
         <TouchableOpacity
-          style={styles.defaultButtonContainer}
+          style={global.style.defaultButtonContainer}
           onPress={() => this.props.navigation.navigate('Title')}
           >
-          <Text style={styles.menuText}>Return</Text>
+          <Text style={global.style.menuText}>Return</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );

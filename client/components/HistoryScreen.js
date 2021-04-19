@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Alert } from 'react-native';
-import styles from '../styles/style'
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -25,18 +24,17 @@ class HistoryScreen extends Component {
     let markedDates = {};
 
     let token = await AsyncStorage.getItem('token');
-          token = JSON.parse(token);
-          // console.log(token);
+    token = JSON.parse(token);
 
-          console.log("Retrieving info...");
-          await axios.get('http://localhost:5000/api/history', {
-            params: {
-              username: this.state.username,
-              password: this.state.password
-            },
-            headers: {
-            'x-auth-token': token.data
-          }})
+    console.log("Retrieving info...");
+    await axios.get('http://localhost:5000/api/history', {
+      params: {
+        username: this.state.username,
+        password: this.state.password
+      },
+      headers: {
+      'x-auth-token': token.data
+    }})
       .then(function (res) {
         console.log(res);
         for (var x of res.data.history) {
@@ -80,7 +78,7 @@ class HistoryScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={global.style.container}>
         <Calendar
           markedDates={this.state.markers}
         />
