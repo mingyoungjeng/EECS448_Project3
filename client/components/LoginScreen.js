@@ -32,7 +32,7 @@ class LoginScreen extends Component {
       .then(async (token) => {
         // Store token in local storage
         console.log( {success: true});
-        await AsyncStorage.setItem('token', JSON.stringify(token));
+        
       })
       .catch(err => alert("User already exists"));      
   }

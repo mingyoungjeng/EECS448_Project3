@@ -22,10 +22,17 @@ class HistoryScreen extends Component {
 
   async getHistory() {
     let markedDates = {};
-
+    
     let token = await AsyncStorage.getItem('token');
-    token = JSON.parse(token);
 
+    // If user is not logged in, they don't have a token
+    // return out of function.
+    if (!token) {
+      console.log("Login to get history");
+      return;
+    }
+    
+    token = JSON.parse(token);
     console.log("Retrieving info...");
     await axios.get('http://localhost:5000/api/history', {
       headers: {
