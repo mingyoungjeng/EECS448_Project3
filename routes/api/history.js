@@ -32,19 +32,19 @@ router.get('/', auth, (req, res) => {
 // Add authorization so users cannot update history without token
 router.post('/', auth, async (req, res) => {
     try {
+        console.log("HISTORY post");
         var user = await User.findById(req.user);
         
         // Construct new item
         const newSummary = new History({
-            condition: req.body.condition
+            condition: req.body.params.condition
         });
+        console.log(newSummary);
 
         // Save the history to the database
         newSummary.save()
             .then(() => { console.log(`Adding new daily summary to the database...`) })
             .catch(err => res.send(err));
-
-        
 
         User.findByIdAndUpdate(
             req.user, 
