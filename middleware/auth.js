@@ -13,7 +13,8 @@ function auth (req, res, next) {
         req.user = payload;
         next();
     } catch (err) {
-        res.status(400).send('Invalid Token');
+        // res.status(400).send('Invalid Token');
+        next(err);
     }
 }
 

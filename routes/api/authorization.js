@@ -24,14 +24,6 @@ router.post('/', async (req, res) => {
         return res.status(400).send('User not found');
     }
 
-    // if (!user) {
-    //     console.log("Failed to authenticate username...");
-    //     user = await User.findOne({ email: req.body.email });
-    //     if (!user) {
-    //         console.log("Failed to authenticate email...");
-        // } return res.status(400).send('User not found');
-    // }
-
     let validUser = (req.body.email == user.email || req.body.username == user.username);
     if (!validUser) return res.status(400).send('Invalid credentials');
 

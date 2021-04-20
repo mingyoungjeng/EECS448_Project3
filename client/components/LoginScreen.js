@@ -15,26 +15,26 @@ class LoginScreen extends Component {
     this.state = { 
       username: "",
       email: "",
-      password: ""
+      password: "",
+      reply: ""
     };
   }
 
   // User registers account with username
-  register = (username, email, password) => {
+  register = async (username, email, password) => {
     console.log(`Attempting to create user: ${username}, ${email}`);
 
     // Encrypt password before sending to server
-    axios.post('http://localhost:5000/api/users', {
+    await axios.post('http://localhost:5000/api/users', {
       username: username,
       email: email,
       password: password
     })
-      .then(async (token) => {
-        // Store token in local storage
-        console.log( {success: true});
-        
-      })
-      .catch(err => alert("User already exists"));      
+      .then(
+        result => {console.log(result)}
+      )
+      .catch( err => console.log(err))
+      // .catch(err => this.setState({ reply: err }));      
   }
 
   render() {
@@ -61,6 +61,10 @@ class LoginScreen extends Component {
         defaultValue={this.text}
       />
 
+      <Text>
+        {this.state.reply}
+      </Text>
+
      
 
       <TouchableOpacity
@@ -70,6 +74,9 @@ class LoginScreen extends Component {
           console.log(this.state);
           const { username, email, password } = this.state;
           this.register(username, email, password);
+          // if (this.register(username, email, password)) {
+          //   this.setState({reply: 'This is from login'})
+          // }
         }}
       >
       <Text>Register</Text>
@@ -84,7 +91,8 @@ class LoginScreen extends Component {
             email: this.state.email,
             password: this.state.password
           })
-            .then( async (res) => {
+            .then(async (res) => {
+              this.setState({ reply: `Welcome back ${this.username}`} );
               await AsyncStorage.clear()
               await AsyncStorage.setItem('token', JSON.stringify(res))
                 .then(() => console.log(`Welcome back ${this.state.username}`))

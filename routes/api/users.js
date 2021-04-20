@@ -23,33 +23,33 @@ router.get('/', async (req, res) => {
 
 // GET user information
 router.get('/me', auth, async (req, res) => {
-    const user = await User.findById(req.user._id).select('-password -date -_id');
-    res.send(user);
+    await User.findById(req.user._id).select('-password -date -_id')
+        .then(result => res.send(result))
+        .catch(err => res.json(err));
+    // res.send(user);
 });
 
 // POST api
 router.post('/', async (req, res) => {
     // Construct new item
-    const newUser = new User({
+    var newUser = new User({
         username: req.body.username,
         email: req.body.email,
         password: req.body.password
-    });
+    })
 
-    await bcrypt.hash(newUser.password, saltRounds)
-        .then((hash) => {newUser.password = hash})
-        .then(() => newUser.save() )
-        .then(() => {
-            console.log(`New users ${newUser.username} added to the database...`)})
-        .catch(err => res.status(409).send(err));
-
-    console.log("Creating token");
-    const token = newUser.generateAuthToken();
-    // Send token back, because can't figure out how to do anything else
-    res.send(token);    
+    bcrypt.hash(newUser.password, saltRounds)
+        .then(hash => {
+            console.log(hash)
+            newUser.password = hash
+            newUser.save()
+            .then(() => res.send(newUser.generateAuthToken()))
+            .catch(err => {return res.json(err)})
+        })
+        .catch(err => {return res.json(err)});
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     User.findById(req.params.id)
         .then(user => user.remove()
             .then( () => res.json({ success: true })))
