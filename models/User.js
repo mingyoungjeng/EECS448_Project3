@@ -8,22 +8,21 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        // Arbitrary
-        minLength: 4,
-        maxLength: 25
+        minLength: [4, `Username must be at least 4 characters`],
+        maxLength: [25, 'Username can be at most 25 characters']
     },
     email: {
         type: String,
         required: true,
         unique: true,
-        minLength: 4,
-        maxLength: 255,
+        minLength: [4, `Email must be at least 4 characters`],
+        maxLength: [255, 'Email can be at most 255 characters']
     },
     password: {
         type: String,
         required: true,
-        minLength: 8,
-        maxLength: 1024
+        minLength: [8, `Password must be at least 8 characters`],
+        maxLength: [1024, 'Password can be at most 25 characters']
     },
     date: {
         type: Date,

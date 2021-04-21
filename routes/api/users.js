@@ -32,21 +32,29 @@ router.get('/me', auth, async (req, res) => {
 // POST api
 router.post('/', async (req, res) => {
     // Construct new item
+    console.log(`POST request name with ${JSON.stringify(req.body)}`);
     var newUser = new User({
         username: req.body.username,
         email: req.body.email,
         password: req.body.password
     })
 
+    // newUser.validate()
+    // // .then((result) => {return console.log(result)})
+    // .catch((err) => {res.send(err.message); res.end(); return;});
+    newUser.validate()
+    .then (() => {
     bcrypt.hash(newUser.password, saltRounds)
         .then(hash => {
             console.log(hash)
             newUser.password = hash
             newUser.save()
-            .then(() => res.send(newUser.generateAuthToken()))
-            .catch(err => {return res.json(err)})
+            .then(() => { console.log(newUser); return res.send(newUser.generateAuthToken())} )
+            .catch(err => {return res.json( {message: "Duplicate user" })})
         })
         .catch(err => {return res.json(err)});
+    })
+    .catch(err => {return res.json(err)});
 });
 
 router.delete('/:id', async (req, res) => {

@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
                 res.send('Invalid password');
             }
          })
-        .catch(err => console.log(err));
+        .catch(err => {return res.json(err)});
 });
 
 

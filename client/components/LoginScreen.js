@@ -13,28 +13,44 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      username: "",
-      email: "",
-      password: "",
+      username: "daniel",
+      email: "bishop",
+      password: "wadsworth",
       reply: ""
     };
   }
 
+  // Use something like this if we start to get different kinds of errors from different sources.
+  getReply = (reply) => {
+    var defaultReply = "Bad credentials";
+    if (reply.data.message) {
+      defaultReply = reply.data.message;
+    } else if (reply.username) {
+      defaultReply = `Welcome back ${reply.username}`;
+    } else {
+      defaultReply = reply.message;
+    }
+    return defaultReply;
+  }
+
   // User registers account with username
   register = async (username, email, password) => {
+    console.log("Calling register...");
     console.log(`Attempting to create user: ${username}, ${email}`);
 
     // Encrypt password before sending to server
-    await axios.post('http://localhost:5000/api/users', {
+    axios.post('http://localhost:5000/api/users', {
       username: username,
       email: email,
       password: password
     })
-      .then(
-        result => {console.log(result)}
-      )
-      .catch( err => console.log(err))
-      // .catch(err => this.setState({ reply: err }));      
+    .then(
+      // 
+      result => {console.log(`post response = ${JSON.stringify(result.data.message)}`); this.setState({ reply: this.getReply(result) });}
+    )
+    .catch(err => console.log(err));
+    // .catch(err => this.setState(err.message.value))
+          
   }
 
   render() {
@@ -48,17 +64,17 @@ class LoginScreen extends Component {
       <TextInput style={global.style.textContentContainer}
         placeholder="username"
         onChangeText={text => this.setState({ username: text})}
-        defaultValue={this.text}
+        // defaultValue="bbbbb"
       />
       <TextInput style={global.style.textContentContainer}
         placeholder="email"
         onChangeText={text => this.setState({ email: text})}
-        defaultValue={this.text}
+        // defaultValue="bbbbb"
       />
       <TextInput style={global.style.textContentContainer}
         placeholder="password"
         onChangeText={text => this.setState({ password: text})}
-        defaultValue={this.text}
+        // defaultValue="bbbbb"
       />
 
       <Text>
@@ -69,14 +85,10 @@ class LoginScreen extends Component {
 
       <TouchableOpacity
         style={global.style.defaultButtonContainer}
-        // Add networking capability to submit button
         onPress = {() => {
           console.log(this.state);
           const { username, email, password } = this.state;
           this.register(username, email, password);
-          // if (this.register(username, email, password)) {
-          //   this.setState({reply: 'This is from login'})
-          // }
         }}
       >
       <Text>Register</Text>
@@ -92,7 +104,7 @@ class LoginScreen extends Component {
             password: this.state.password
           })
             .then(async (res) => {
-              this.setState({ reply: `Welcome back ${this.username}`} );
+              this.setState({ reply: `Welcome back ${this.state.username}`} );
               await AsyncStorage.clear()
               await AsyncStorage.setItem('token', JSON.stringify(res))
                 .then(() => console.log(`Welcome back ${this.state.username}`))
