@@ -31,37 +31,28 @@ router.get('/', auth, (req, res) => {
 // POST api
 // Add authorization so users cannot update history without token
 router.post('/', auth, async (req, res) => {
-    try {
-        console.log("HISTORY post");
-        var user = await User.findById(req.user);
-        
-        // Construct new item
-        const newSummary = new History({
-            condition: req.body.params.condition
-        });
-        console.log(newSummary);
-
-        // Save the history to the database
-        newSummary.save()
-            .then(() => { console.log(`Adding new daily summary to the database...`) })
-            .catch(err => res.send(err));
-
-        User.findByIdAndUpdate(
-            req.user, 
-            {$push: {"history": newSummary}},
-            { upsert: true },
-            function(err, result) {
-                if (err) {
-                    console.log(err);
-                } 
-            })
-            .catch(err => console.log(err));
-    } catch (error) {
-        console.log(error);
+    // Terminate request if no condition was sent
+    if (!req.body.condition) {
+        return res.status(500).send("No condition specified");
     }
 
-    
-    
+    const newHistory = new History({
+        condition: req.body.condition
+    })
+
+    await newHistory.save()
+    await User.findByIdAndUpdate(
+        req.user, 
+        {$push: {"history": newHistory}},
+        { upsert: true },
+        function(err, result) {
+            // console.log(result);
+            if (err) {
+                console.log(err);
+            } 
+        })
+    .then((result) => {return res.json(result);})
+    .catch(err => {return res.send(err);});
 });
 
 // router.delete('/:id', (req, res) => {

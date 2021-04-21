@@ -31,9 +31,8 @@ class ContentScreen extends Component {
     let token = await AsyncStorage.getItem('token');
     token = JSON.parse(token);
     axios.post('http://localhost:5000/api/history', {
-      params: {
         condition: this.props.route.params.condition
-      }}, {
+      }, {
       headers: {
       'x-auth-token': token.data
     }})

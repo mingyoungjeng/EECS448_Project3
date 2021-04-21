@@ -16,8 +16,8 @@ router.get('/', async (req, res) => {
     // Model.find()
     await User.find()
         .sort({ username: 1 })
-        .then(users => res.json(users))
-        .catch(err => console.log(err));
+        .then(users => {return res.json(users)})
+        .catch(err => {return res.json(err)});
 
 });
 
@@ -60,7 +60,8 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     User.findById(req.params.id)
         .then(user => user.remove()
-            .then( () => res.json({ success: true })))
+            .then( () => {return res.json(user)}))
+            // .then( () => {return res.json({ success: true })}))
         .catch(err => res.status(404).json({ success: false }));
 });
 
