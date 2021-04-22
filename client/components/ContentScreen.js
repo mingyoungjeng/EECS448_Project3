@@ -24,13 +24,33 @@ class ContentScreen extends Component {
 
     this.setState({ condition: condition });
 
-    let searchTerm = searchTerms[condition][Math.floor(Math.random() * searchTerms[condition].length)];
-    console.log("Finding gif with search: " + searchTerm);
-    axios.get("https://api.giphy.com/v1/gifs/translate?api_key=FxNx8bWzHL1OToRmoQb7vAUEIqhgKCHo&s=" + searchTerm)
+    let searchTerm = this.getSearchTerm(condition);
+    this.getNewImage(searchTerm);
+  }
+
+  // Retrieves a search term from the dictionary given a condition
+  // 04/21/2021 - Refactor old code
+  getSearchTerm = (condition) => {
+    return searchTerms[condition][Math.floor(Math.random() * searchTerms[condition].length)];
+  }
+
+  // Retrieves a new image 
+  // 04/21/2021 - Refactor old code
+  getNewImage = async (keyword) => {
+    var keyword = keyword;
+    if (!keyword) {
+      keyword = 'what?';
+    }
+
+    // Make a get request using giphy api and set the new gif in state.gif
+    console.log("Finding gif with search: " + keyword);
+    await axios.get("https://api.giphy.com/v1/gifs/translate?api_key=FxNx8bWzHL1OToRmoQb7vAUEIqhgKCHo&s=" + keyword)
       .then(res => {
         this.setState({ gif: res.data.data});
         console.log(this.state.gif);
-      });
+      })
+      .catch(error => console.log(error));
+
   }
 
   async storeCondition() {
@@ -67,6 +87,22 @@ class ContentScreen extends Component {
           style={global.style.image}
           source={{uri: this.state.gif.images.original.url}}
         />
+
+      <View style={{flexDirection: 'row'}}>
+        <TouchableOpacity 
+        style={global.style.defaultButtonContainer}
+        onPress={() => this.getNewImage()}
+        >
+          <Text>Thumbs Up</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+        style={global.style.defaultButtonContainer}
+        onPress={() => this.getNewImage()}
+        >
+          <Text>Thumbs Down</Text>
+        </TouchableOpacity>
+      </View>
 
         <TouchableOpacity
           style={global.style.defaultButtonContainer}
