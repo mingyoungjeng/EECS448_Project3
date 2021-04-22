@@ -126,7 +126,10 @@ class Question extends Component {
               console.log("Condition is: " + condition);
 
               this.setState({ question: 0 });
-              this.props.navigation.navigate('Content', {condition: condition});
+              this.props.navigation.navigate('Content', {
+                condition: condition,
+                data: this.state.responses
+              });
             }
           }}>
             <Text>Next</Text>

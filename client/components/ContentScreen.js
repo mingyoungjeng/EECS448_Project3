@@ -11,9 +11,10 @@ let searchTerms = {
 }
 
 class ContentScreen extends Component {
-  state = {gif: "", condition: ""};
+  state = {gif: "", condition: "", keyword: "", done: false};
 
   componentDidMount() {
+    console.log(this.props.route);
     this.storeCondition();
     let condition;
     try {
@@ -36,11 +37,14 @@ class ContentScreen extends Component {
 
   // Retrieves a new image 
   // 04/21/2021 - Refactor old code
-  getNewImage = async (keyword) => {
-    var keyword = keyword;
+  getNewImage = async (inputkey) => {
+    console.log(`inputkey = ${inputkey}`);
+    var keyword = inputkey;
     if (!keyword) {
-      keyword = 'what?';
+      keyword = 'na';
     }
+
+    this.setState({ keyword: keyword });
 
     // Make a get request using giphy api and set the new gif in state.gif
     console.log("Finding gif with search: " + keyword);
@@ -50,7 +54,16 @@ class ContentScreen extends Component {
         console.log(this.state.gif);
       })
       .catch(error => console.log(error));
+  }
 
+  sendData = async (keyword, data) => {
+    await axios.post('http://localhost:5000/api/data', 
+    {
+      keyword: keyword,
+      data: data      
+    })
+      .then(result => console.log(result))
+      .catch(error => console.log(error));
   }
 
   async storeCondition() {
@@ -91,7 +104,14 @@ class ContentScreen extends Component {
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity 
         style={global.style.defaultButtonContainer}
-        onPress={() => this.getNewImage()}
+        onPress={() => {
+          if (!this.state.done) {
+            console.log("Sending data...");
+            this.sendData(this.state.keyword, this.props.route.params.data);
+            this.setState({ done: true });
+          }
+          this.getNewImage();
+        }}
         >
           <Text>Thumbs Up</Text>
         </TouchableOpacity>
