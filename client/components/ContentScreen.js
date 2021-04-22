@@ -11,11 +11,18 @@ let searchTerms = {
 }
 
 class ContentScreen extends Component {
-  state = {gif: ""};
+  state = {gif: "", condition: ""};
 
   componentDidMount() {
     this.storeCondition();
-    let condition = this.props.route.params.condition;
+    let condition;
+    try {
+      condition = this.props.route.params.condition;
+    } catch {
+      condition = 'bad';
+    }
+
+    this.setState({ condition: condition });
 
     let searchTerm = searchTerms[condition][Math.floor(Math.random() * searchTerms[condition].length)];
     console.log("Finding gif with search: " + searchTerm);
@@ -31,7 +38,7 @@ class ContentScreen extends Component {
     let token = await AsyncStorage.getItem('token');
     token = JSON.parse(token);
     axios.post('http://localhost:5000/api/history', {
-        condition: this.props.route.params.condition
+        condition: this.state.condition
       }, {
       headers: {
       'x-auth-token': token.data
