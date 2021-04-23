@@ -1,9 +1,15 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.4",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.3",
@@ -26,7 +32,8 @@
     "@babel/plugin-syntax-jsx": "^7.12.13",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "jest-circus": "^26.6.3",
-    "jest-expo": "^41.0.0"
+    "jest-expo": "^41.0.0",
+    "testing-library": "^0.0.2"
   },
   "private": true,
   "jest": {

@@ -24,6 +24,7 @@ class HistoryScreen extends Component {
     let markedDates = {};
     
     let token = await AsyncStorage.getItem('token');
+    console.log(token);
 
     // If user is not logged in, they don't have a token
     // return out of function.
@@ -83,6 +84,11 @@ class HistoryScreen extends Component {
     return (
       <SafeAreaView style={global.style.container}>
         <Calendar
+          style={{
+            borderWidth: 1,
+            borderColor: 'gray',
+            height: 350
+          }}
           markedDates={this.state.markers}
         />
 
