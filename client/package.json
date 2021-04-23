@@ -26,9 +26,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "jest": { "preset": "jest-expo/universal" },
     "jest-circus": "^26.6.3",
     "jest-expo": "^41.0.0"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "preset": "jest-expo/universal"
+  }
 }
