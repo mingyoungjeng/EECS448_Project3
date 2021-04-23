@@ -30,6 +30,8 @@ it("displays reply when buton clicked", () => {
 
 	const button1 = getByText("Jolly!");
 	fireEvent.press(button1);
+
+	getByText("Oh that's interesting to hear.");
 });
 
 
