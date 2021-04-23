@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Alert } from 'react-native';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import PropTypes from 'prop-types';
 
 const bad = {key:'bad', color: 'red'};
 const medium = {key:'medium', color: 'yellow'}; // selectedDotColor: 'blue'}
@@ -93,9 +94,15 @@ class HistoryScreen extends Component {
         />
 
 
+
       </SafeAreaView>
     );
   }
 }
+
+Calendar.propTypes = {
+  optionalFunc: PropTypes.func
+}
+
 
 export default HistoryScreen
