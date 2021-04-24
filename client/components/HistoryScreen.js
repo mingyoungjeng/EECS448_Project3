@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Button, Alert } from 'react-native';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PropTypes from 'prop-types';
@@ -23,7 +23,7 @@ class HistoryScreen extends Component {
 
   async getHistory() {
     let markedDates = {};
-    
+
     let token = await AsyncStorage.getItem('token');
     console.log(token);
 
@@ -33,7 +33,7 @@ class HistoryScreen extends Component {
       console.log("Login to get history");
       return;
     }
-    
+
     token = JSON.parse(token);
     console.log("Retrieving info...");
     await axios.get('http://localhost:5000/api/history', {
@@ -71,7 +71,7 @@ class HistoryScreen extends Component {
             dots.selected = true;
             dots.selectedColor = "green";
           }
-          
+
           markedDates[dateString] = dots;
         }
       })
@@ -93,7 +93,12 @@ class HistoryScreen extends Component {
           markedDates={this.state.markers}
         />
 
-
+        <TouchableOpacity
+          style={global.style.defaultButtonContainer}
+          onPress={() => this.props.navigation.navigate('Title')}
+        >
+          <Text style={global.style.menuText}>Return</Text>
+        </TouchableOpacity>
 
       </SafeAreaView>
     );

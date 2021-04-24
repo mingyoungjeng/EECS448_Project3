@@ -18,6 +18,15 @@ class ThemeScreen extends Component {
       </TouchableOpacity>
 
 
+
+
+      <TouchableOpacity
+        style={global.style.defaultButtonContainer}
+        onPress={() => this.props.navigation.navigate('Settings')}
+      >
+        <Text style={global.style.menuText}>Return</Text>
+      </TouchableOpacity>
+
       </SafeAreaView>
     );
   }
