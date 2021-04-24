@@ -3,7 +3,7 @@
     "width":640,
     "height":800,
     "flex":1,
-    "backgroundColor":"#fff",
+    "backgroundColor":"#53E7F0",
     "alignItems":"center",
     "justifyContent":"center"
   },
@@ -28,7 +28,7 @@
   },
   "defaultButtonContainer":{
     "color":"#fff",
-    "backgroundColor":"#ddd",
+    "backgroundColor":"#F9C987",
     "paddingVertical":12,
     "paddingHorizontal":20,
     "margin":"10px",
@@ -37,7 +37,7 @@
     "borderColor":"black"
   },
   "textContentContainer":{
-    "backgroundColor":"#aaa",
+    "backgroundColor":"#EAF2F2",
     "widthType":"percentage",
     "width":"80%",
     "margin":"10px",
@@ -66,6 +66,9 @@
   },
   "image":{
     "width":300,
-    "height":300
+    "height":300,
+    "borderRadius":10,
+    "borderWidth":5,
+    "borderColor":"black"
   }
 }

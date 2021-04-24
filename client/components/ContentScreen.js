@@ -35,7 +35,7 @@ class ContentScreen extends Component {
     return searchTerms[condition][Math.floor(Math.random() * searchTerms[condition].length)];
   }
 
-  // Retrieves a new image 
+  // Retrieves a new image
   // 04/21/2021 - Refactor old code
   getNewImage = async (inputkey) => {
     console.log(`inputkey = ${inputkey}`);
@@ -57,10 +57,10 @@ class ContentScreen extends Component {
   }
 
   sendData = async (keyword, data) => {
-    await axios.post('http://localhost:5000/api/data', 
+    await axios.post('http://localhost:5000/api/data',
     {
       keyword: keyword,
-      data: data      
+      data: data
     })
       .then(result => console.log(result))
       .catch(error => console.log(error));
@@ -102,7 +102,7 @@ class ContentScreen extends Component {
         />
 
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity 
+        <TouchableOpacity
         style={global.style.defaultButtonContainer}
         onPress={() => {
           if (!this.state.done) {
@@ -116,7 +116,7 @@ class ContentScreen extends Component {
           <Text>Thumbs Up</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity 
+        <TouchableOpacity
         style={global.style.defaultButtonContainer}
         onPress={() => this.getNewImage()}
         >

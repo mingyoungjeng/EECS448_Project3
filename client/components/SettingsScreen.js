@@ -36,7 +36,8 @@ class SettingsScreen extends Component {
 
         <TouchableOpacity
           style={global.style.defaultButtonContainer}
-          onPress = {() => this.selectTheme("default")}
+          // onPress = {() => this.selectTheme("default")}
+          onPress={() => this.props.navigation.navigate('Theme')}
           >
           <Text style={global.style.menuText}>Change Theme?</Text>
         </TouchableOpacity>

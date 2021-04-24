@@ -10,6 +10,7 @@ import HistoryScreen from './components/HistoryScreen';
 import ContentScreen from './components/ContentScreen';
 import Faq from './components/Faq';
 import LoginScreen from './components/LoginScreen';
+import ThemeScreen from './components/ThemeScreen';
 
 
 const Stack = createStackNavigator();
@@ -40,7 +41,6 @@ class App extends Component {
           />
 
           <Stack.Screen
-
             name="FAQ"
             component={Faq}
             options={{ title:"About" }}
@@ -62,6 +62,12 @@ class App extends Component {
             name="Login"
             component={LoginScreen}
             options={{ title:"Login" }}
+          />
+
+          <Stack.Screen
+            name="Theme"
+            component={ThemeScreen}
+            options={{ title:"Theme" }}
           />
 
           </Stack.Navigator>

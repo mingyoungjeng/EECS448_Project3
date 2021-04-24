@@ -6,16 +6,16 @@ import { StyleSheet, Text, View, SafeAreaView, Button, TouchableOpacity } from '
 class Faq extends Component {
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={global.style.container}>
 
-      <View style={styles.textContentContainer}>
-        <Text style={styles.responseText}> This is an app that helps  track your mood and gives your motivation quotes based on your responses </Text>
+      <View style={global.style.textContentContainer}>
+        <Text style={global.style.responseText}> This is an app that helps  track your mood and gives your motivation quotes based on your responses </Text>
       </View>
       <TouchableOpacity
-        style={styles.defaultButtonContainer}
+        style={global.style.defaultButtonContainer}
         onPress={() => this.props.navigation.navigate('Title')}
         >
-        <Text style={styles.menuText}>Return</Text>
+        <Text style={global.style.menuText}>Return</Text>
       </TouchableOpacity>
       </SafeAreaView>
     );
