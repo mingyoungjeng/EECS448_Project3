@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Alert } from 'react-native';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import PropTypes from 'prop-types';
 
 const bad = {key:'bad', color: 'red'};
 const medium = {key:'medium', color: 'yellow'}; // selectedDotColor: 'blue'}
@@ -24,6 +25,7 @@ class HistoryScreen extends Component {
     let markedDates = {};
     
     let token = await AsyncStorage.getItem('token');
+    console.log(token);
 
     // If user is not logged in, they don't have a token
     // return out of function.
@@ -83,13 +85,24 @@ class HistoryScreen extends Component {
     return (
       <SafeAreaView style={global.style.container}>
         <Calendar
+          style={{
+            borderWidth: 1,
+            borderColor: 'gray',
+            height: 350
+          }}
           markedDates={this.state.markers}
         />
+
 
 
       </SafeAreaView>
     );
   }
 }
+
+Calendar.propTypes = {
+  optionalFunc: PropTypes.func
+}
+
 
 export default HistoryScreen

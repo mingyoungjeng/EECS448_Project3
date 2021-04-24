@@ -5,27 +5,48 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.4",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.3",
+    "@testing-library/react-native": "^7.2.0",
     "axios": "^0.21.1",
-    "expo": "^40.0.1",
+    "expo": "^41.0.1",
     "expo-status-bar": "~1.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-calendars": "^1.1254.0",
     "react-native-gesture-handler": "~1.8.0",
-    "react-native-reanimated": "~1.13.0",
+    "react-native-reanimated": "^2.1.0",
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.2",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "^0.16.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0"
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-syntax-jsx": "^7.12.13",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "jest-circus": "^26.6.3",
+    "jest-expo": "^41.0.0",
+    "testing-library": "^0.0.2"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "preset": "jest-expo/web"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-react-jsx",
+      "@babel/plugin-proposal-class-properties"
+    ]
+  }
 }

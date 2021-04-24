@@ -9,7 +9,8 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "cd client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\" "
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "test": "cd client && npm run test"
   },
   "repository": {
     "type": "git",
@@ -22,16 +23,37 @@
   },
   "homepage": "https://github.com/mingyoungjeng/EECS448_Project3#readme",
   "dependencies": {
+<<<<<<< HEAD
     "@react-native-async-storage/async-storage": "^1.15.4",
     "bcrypt": "^5.0.1",
+=======
+    "@react-native-async-storage/async-storage": "^1.15.2",
+    "@testing-library/react-native": "^7.2.0",
+>>>>>>> 9ad8fbc11fcd338d895942767ea515a4cbfc1190
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^6.0.2",
+    "core-js": "^3.11.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.3",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.12.13",
+    "@babel/preset-react": "^7.13.13",
+    "jest-expo": "^41.0.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel-preset-expo",
+      "@babel/preset-react",
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-react-jsx"
+    ]
   }
 }
