@@ -82,8 +82,14 @@
     "height":300,
     "borderRadius":10,
     "borderWidth":5,
-    "borderColor":"black",
-    "fontFamily": "HiraMinProN-W6"
+    "borderColor":"black"
+  },
+  "themeImage":{
+    "width":150,
+    "height":150,
+    "borderRadius":10,
+    "borderWidth":5,
+    "borderColor":"black"
   },
   "NextText":{
     "fontSize":20,

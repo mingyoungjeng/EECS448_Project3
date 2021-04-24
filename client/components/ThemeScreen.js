@@ -10,9 +10,35 @@ class ThemeScreen extends Component {
     return (
       <SafeAreaView style={global.style.container}>
 
+
+      <Text style={global.style.responseText}>Theme #1</Text>
       <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
         <Image
-          style={global.style.image}
+          style={global.style.themeImage}
+          source={{ uri: 'https://reactnative.dev/client/assets/favicon.png'}}
+        />
+      </TouchableOpacity>
+
+      <Text style={global.style.responseText}>Theme #2</Text>
+      <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
+        <Image
+          style={global.style.themeImage}
+          source={{ uri: 'https://reactnative.dev/client/assets/favicon.png'}}
+        />
+      </TouchableOpacity>
+
+      <Text style={global.style.responseText}>Theme #3</Text>
+      <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
+        <Image
+          style={global.style.themeImage}
+          source={{ uri: 'https://reactnative.dev/client/assets/favicon.png'}}
+        />
+      </TouchableOpacity>
+
+      <Text style={global.style.responseText}>Theme #4</Text>
+      <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
+        <Image
+          style={global.style.themeImage}
           source={{ uri: 'https://reactnative.dev/client/assets/favicon.png'}}
         />
       </TouchableOpacity>
