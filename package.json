@@ -23,13 +23,9 @@
   },
   "homepage": "https://github.com/mingyoungjeng/EECS448_Project3#readme",
   "dependencies": {
-<<<<<<< HEAD
     "@react-native-async-storage/async-storage": "^1.15.4",
     "bcrypt": "^5.0.1",
-=======
-    "@react-native-async-storage/async-storage": "^1.15.2",
     "@testing-library/react-native": "^7.2.0",
->>>>>>> 9ad8fbc11fcd338d895942767ea515a4cbfc1190
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^6.0.2",
