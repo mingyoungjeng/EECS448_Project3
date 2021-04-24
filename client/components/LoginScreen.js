@@ -12,7 +12,7 @@ const saltRounds = 10;
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       username: "daniel",
       email: "bishop",
       password: "wadsworth",
@@ -49,7 +49,7 @@ class LoginScreen extends Component {
     )
     .catch(err => console.log(err));
     // .catch(err => this.setState(err.message.value))
-          
+
   }
 
   render() {
@@ -57,7 +57,7 @@ class LoginScreen extends Component {
       <SafeAreaView style={global.style.container}>
 
       <View style={global.style.textContentContainer}>
-        <Text> Login or Register Below </Text>
+        <Text style={global.style.menuText}> Login or Register Below: </Text>
       </View>
 
       <TextInput style={global.style.textContentContainer}
@@ -80,7 +80,7 @@ class LoginScreen extends Component {
         {this.state.reply}
       </Text>
 
-     
+
 
       <TouchableOpacity
         style={global.style.defaultButtonContainer}
@@ -90,10 +90,10 @@ class LoginScreen extends Component {
           this.register(username, email, password);
         }}
       >
-      <Text>Register</Text>
+      <Text style={global.style.menuText}>Register</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity 
+      <TouchableOpacity
         style={ global.style.defaultButtonContainer }
         onPress = {() => {
           console.log("Retrieving info...");
@@ -112,10 +112,10 @@ class LoginScreen extends Component {
             .catch(err => console.error(err));
         }}
       >
-      <Text>Login</Text>
+      <Text style={global.style.menuText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity 
+      <TouchableOpacity
         style={ global.style.defaultButtonContainer }
         onPress = {async () => {
           let token = await AsyncStorage.getItem('token')
@@ -124,7 +124,7 @@ class LoginScreen extends Component {
           if (token) {
             token = JSON.parse(token);
             console.log(token);
-  
+
             console.log("Retrieving info...");
             axios.get('http://localhost:5000/api/users/me', {
               params: {
@@ -139,7 +139,7 @@ class LoginScreen extends Component {
           }
         }}
       >
-      <Text>Get info</Text>
+      <Text style={global.style.menuText}>Get info</Text>
       </TouchableOpacity>
 
       <TouchableOpacity

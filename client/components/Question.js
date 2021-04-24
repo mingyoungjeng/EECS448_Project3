@@ -132,7 +132,7 @@ class Question extends Component {
               });
             }
           }}>
-            <Text>Next</Text>
+            <Text style={global.style.NextText}>Next</Text>
           </TouchableOpacity>
         </View>
 

@@ -8,7 +8,7 @@ class TitleScreen extends Component {
   render() {
     return (
       <SafeAreaView style={global.style.container}>
-        <Text style={global.style.titleText}>CIAN!</Text>
+        <Text style={global.style.titleText}>cian</Text>
 
         <TouchableOpacity
           style={global.style.defaultButtonContainer}

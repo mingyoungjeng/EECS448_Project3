@@ -113,14 +113,14 @@ class ContentScreen extends Component {
           this.getNewImage();
         }}
         >
-          <Text>Thumbs Up</Text>
+          <Text style={global.style.responseText}>Thumbs Up</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
         style={global.style.defaultButtonContainer}
         onPress={() => this.getNewImage()}
         >
-          <Text>Thumbs Down</Text>
+          <Text style={global.style.responseText}>Thumbs Down</Text>
         </TouchableOpacity>
       </View>
 

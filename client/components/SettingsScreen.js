@@ -25,7 +25,7 @@ class SettingsScreen extends Component {
   render() {
     return (
       <SafeAreaView style={global.style.container}>
-        <Text style={global.style.titleText}>Set your settings here</Text>
+        <Text style={global.style.contentText}>Adjust your settings here</Text>
 
         <TouchableOpacity
           style={global.style.defaultButtonContainer}
