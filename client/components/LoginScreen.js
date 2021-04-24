@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
+import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Set up clientside encryption
@@ -45,7 +45,6 @@ class LoginScreen extends Component {
       password: password
     })
     .then(
-      // 
       result => {console.log(`post response = ${JSON.stringify(result.data.message)}`); this.setState({ reply: this.getReply(result) });}
     )
     .catch(err => console.log(err));

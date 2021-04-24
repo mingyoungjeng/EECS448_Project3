@@ -1,19 +1,35 @@
-
-// Survey/Question
-// Content Delivery System
-
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
 import {render, fireEvent, waitFor } from "@testing-library/react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import SurveyScreen from "../components/SurveyScreen";
 import Question from "../components/Question";
 import ContentScreen from "../components/ContentScreen";
-
+import App from "../App";
 
 global.style = StyleSheet.create(require('../styles/default.json'));
+jest.mock('axios');
+jest.mock('@react-native-async-storage/async-storage');
+
+const token = JSON.stringify({
+    data: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjYTZhMTBhNjE1ODM2ZDhkNjQyMWQiLCJpYXQiOjE2MTkxOTI3NTZ9.Be78qf5e8S9e_ExCzyeEFi6Rwi0qx9ToWj7mOckqTM4"
+});
+
+const gif = {
+	data: {
+		data: {
+			images: {
+				original: {
+					url: "https://media1.giphy.com/media/l46CdKhgRegTqUWFG/giphy-preview.gif?cid=337535dc9592a949bf33ed2fe81627748ea40e5630b02fed&rid=giphy-preview.gif&ct=g"
+				}
+			}
+		}
+	}
+}
 
 it("renders survey", () => {
 	render(<SurveyScreen/>);
@@ -38,36 +54,28 @@ it("displays reply when button clicked", () => {
 });
 
 
-// it("renders ContentScreen when survey is finished", () => {
-// 	const Stack = createStackNavigator();
+it("renders ContentScreen when survey is finished", () => {
 	
-// 	const {getByText} = render(
-// 		<NavigationContainer>
-// 		  <Stack.Navigator>
+	AsyncStorage.getItem.mockResolvedValue(token);
+	axios.get.mockResolvedValue(history);
+	axios.post.mockResolvedValue({});
+	
+	const {getByText} = render(<App/>);
 
-// 		    <Stack.Screen
-// 		      name="Survey"
-// 		      component={SurveyScreen}
-// 		      options={{ title:"Survey" }}
-// 		    />
+	const start = getByText('Start');
+	fireEvent.press(start);
 
-// 		    <Stack.Screen
-// 		      name="Content"
-// 		      component={ContentScreen}
-// 		      options={{ title:"Content" }}
-// 		    />
+	const button1 = getByText('Next');
+	fireEvent.press(button1);
+	fireEvent.press(button1);
+	fireEvent.press(button1);
+	fireEvent.press(button1);
+});
 
-// 		    </Stack.Navigator>
-// 		</NavigationContainer>
-// 	);
+it("renders content", () => {
+	AsyncStorage.getItem.mockResolvedValue(token);
+	axios.get.mockResolvedValue(history);
+	axios.post.mockResolvedValue({});
 
-// 	const button1 = getByText('Next');
-// 	fireEvent.press(button1);
-// 	fireEvent.press(button1);
-// 	fireEvent.press(button1);
-// 	fireEvent.press(button1);
-// });
-
-// it("renders content", () => {
-// 	render(<ContentScreen/>);
-// });
+	render(<ContentScreen/>);
+});

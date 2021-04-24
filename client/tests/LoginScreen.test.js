@@ -7,12 +7,20 @@ import {render, fireEvent, waitFor } from "@testing-library/react-native";
 import LoginScreen from "../components/LoginScreen";
 
 global.style = StyleSheet.create(require('../styles/default.json'));
+jest.mock('axios');
+
+const message = {
+  data: {
+    message: "Duplicate user"
+  }
+};
 
 it("renders", () => {
 	render(<LoginScreen/>);
 });
 
 it("registers existing user", () => {
+  axios.post.mockResolvedValue(message);
 	const {getByPlaceholderText, getByText} = render(<LoginScreen/>);
 
 	const username = getByPlaceholderText('username');
@@ -27,7 +35,7 @@ it("registers existing user", () => {
   	const button = getByText('Register');
   	fireEvent.press(button);
 
-  	getByText("User validation failed: password: Password must be at least 8 characters");
+  	getByText("Duplicate user");
 });
 
 it("logs in", () => {
