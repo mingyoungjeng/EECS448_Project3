@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView,ImageBackground, TouchableOpacity, Alert, FlatList, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class ThemeScreen extends Component {
@@ -12,10 +12,12 @@ class ThemeScreen extends Component {
 
 
       <Text style={global.style.responseText}>Theme #1</Text>
-      <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
+      <TouchableOpacity onPress={() =>
+          style = global.style.theme1}
+      >
         <Image
           style={global.style.themeImage}
-          source={{ uri: 'https://reactnative.dev/client/assets/favicon.png'}}
+          source={require('./icons/favicon.png')}
         />
       </TouchableOpacity>
 
@@ -23,7 +25,7 @@ class ThemeScreen extends Component {
       <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
         <Image
           style={global.style.themeImage}
-          source={{ uri: 'https://reactnative.dev/client/assets/favicon.png'}}
+          source={require('./icons/favicon.png')}
         />
       </TouchableOpacity>
 
@@ -31,7 +33,7 @@ class ThemeScreen extends Component {
       <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
         <Image
           style={global.style.themeImage}
-          source={{ uri: 'https://reactnative.dev/client/assets/favicon.png'}}
+          source={require('./icons/favicon.png')}
         />
       </TouchableOpacity>
 
@@ -39,7 +41,7 @@ class ThemeScreen extends Component {
       <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
         <Image
           style={global.style.themeImage}
-          source={{ uri: 'https://reactnative.dev/client/assets/favicon.png'}}
+          source={require('./icons/favicon.png')}
         />
       </TouchableOpacity>
 
@@ -52,6 +54,12 @@ class ThemeScreen extends Component {
       >
         <Text style={global.style.menuText}>Return</Text>
       </TouchableOpacity>
+
+
+      <ImageBackground
+        style={global.style.icon}
+        source={require('./icons/favicon.png')}
+      />
 
       </SafeAreaView>
     );

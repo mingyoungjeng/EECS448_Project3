@@ -96,5 +96,16 @@
     "textAlign": "center",
     "fontFamily": "HiraMinProN-W6",
     "fontWeight":"bold"
+  },
+  "theme1": {
+    "StyleSheet":"absoluteFillObject",
+    "backgroundColor": "green"
+  },
+  "icon": {
+    "width":150,
+    "height":150,
+    "position": "absolute",
+    "bottom" : 0,
+    "right":0
   }
 }
