@@ -38,6 +38,7 @@
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.12.13",
     "@babel/preset-react": "^7.13.13",
+    "babel-preset-react-native": "^4.0.1",
     "jest-expo": "^41.0.0"
   },
   "babel": {
