@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 import {render, fireEvent, waitFor } from "@testing-library/react-native";
 
 import SettingsScreen from "../components/SettingsScreen";
+import App from "../App";
 
 global.style = StyleSheet.create(require('../styles/default.json'));
 
@@ -11,12 +12,16 @@ it("renders settings", () => {
 });
 
 it("changes theme", () => {
-	const {getByText} = render(<SettingsScreen/>);
+	const {getByText} = render(<App/>);
+
+	const settings = getByText('Settings');
+	fireEvent.press(settings);
 
 	const button = getByText('Change Theme?');
   	fireEvent.press(button);
 
-  	// Pick a theme
-});
+  	const theme = getByText('Theme #2');
+  	fireEvent.press(theme);
 
-// Change Theme
+  	expect(global.style.name).toBe('Theme #2');
+});

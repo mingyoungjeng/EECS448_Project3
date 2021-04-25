@@ -1,10 +1,10 @@
 {
-  "name" : "default",
+  "name":"theme1",
   "container":{
     "width":640,
     "height":800,
     "flex":1,
-    "backgroundColor":"#86F6F6",
+    "backgroundColor":"#328BF8",
     "alignItems":"center",
     "justifyContent":"center"
   },
@@ -30,7 +30,7 @@
   },
   "defaultButtonContainer":{
     "color":"#fff",
-    "backgroundColor":"#FEA88E",
+    "backgroundColor":"#FCFF67",
     "paddingVertical":12,
     "paddingHorizontal":20,
     "margin":"10px",
