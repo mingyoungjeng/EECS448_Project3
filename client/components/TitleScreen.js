@@ -3,10 +3,15 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
 const jwt = require('jsonwebtoken');
 const uuid = require('uuid');
+import { useIsFocused } from '@react-navigation/native';
+
 
 class TitleScreen extends Component {
   render() {
     // Displays navigation menu to different components of the app.
+
+    const {isFocused} = this.props;
+
     return (
       <SafeAreaView style={global.style.container}>
         <Text style={global.style.titleText}>cian</Text>
@@ -58,4 +63,8 @@ class TitleScreen extends Component {
   }
 }
 
-export default TitleScreen
+export default function(props) {
+  const isFocused = useIsFocused();
+
+  return <TitleScreen {...props} isFocused={isFocused} />
+}
