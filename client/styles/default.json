@@ -82,13 +82,30 @@
     "height":300,
     "borderRadius":10,
     "borderWidth":5,
-    "borderColor":"black",
-    "fontFamily": "HiraMinProN-W6"
+    "borderColor":"black"
+  },
+  "themeImage":{
+    "width":150,
+    "height":150,
+    "borderRadius":10,
+    "borderWidth":5,
+    "borderColor":"black"
   },
   "NextText":{
     "fontSize":20,
     "textAlign": "center",
     "fontFamily": "HiraMinProN-W6",
     "fontWeight":"bold"
+  },
+  "theme1": {
+    "StyleSheet":"absoluteFillObject",
+    "backgroundColor": "green"
+  },
+  "icon": {
+    "width":200,
+    "height":200,
+    "position": "absolute",
+    "bottom" : 0,
+    "right":0
   }
 }

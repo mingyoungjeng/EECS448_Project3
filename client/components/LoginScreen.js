@@ -115,6 +115,7 @@ class LoginScreen extends Component {
       <Text style={global.style.menuText}>Login</Text>
       </TouchableOpacity>
 
+      <View style= {{display: "none"}}>
       <TouchableOpacity
         style={ global.style.defaultButtonContainer }
         onPress = {async () => {
@@ -141,6 +142,7 @@ class LoginScreen extends Component {
       >
       <Text style={global.style.menuText}>Get info</Text>
       </TouchableOpacity>
+      </View>
 
       <TouchableOpacity
         style={global.style.defaultButtonContainer}
