@@ -85,11 +85,7 @@ class HistoryScreen extends Component {
     return (
       <SafeAreaView style={global.style.container}>
         <Calendar
-          style={{
-            borderWidth: 1,
-            borderColor: 'gray',
-            height: 350
-          }}
+          style={global.style.calendarContainer}
           markedDates={this.state.markers}
         />
 

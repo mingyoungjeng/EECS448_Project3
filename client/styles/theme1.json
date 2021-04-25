@@ -49,6 +49,11 @@
     "padding":"10px",
     "fontFamily": "HiraMinProN-W6"
   },
+  "calendarContainer": {
+    "borderWidth": 5,
+    "borderColor": "#FCFF67",
+    "height": 350
+  },
   "titleText":{
     "fontSize":60,
     "fontWeight":"bold",
