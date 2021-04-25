@@ -25,5 +25,3 @@ it("changes theme", () => {
 
   	expect(global.style.name).toBe('Theme #2');
 });
-
-// Change Theme
