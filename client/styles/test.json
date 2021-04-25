@@ -1,4 +1,5 @@
 {
+  "name": "test",
   "container":{
     "width":640,
     "height":800,

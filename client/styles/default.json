@@ -1,4 +1,5 @@
 {
+  "name" : "default",
   "container":{
     "width":640,
     "height":800,
