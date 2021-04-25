@@ -4,7 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class ThemeScreen extends Component {
 
-
+  changeTheme(theme) {
+    global.style = StyleSheet.create(require('../styles/' + theme + '.json'));
+  }
 
   render() {
     return (
@@ -12,9 +14,7 @@ class ThemeScreen extends Component {
 
 
       <Text style={global.style.responseText}>Theme #1</Text>
-      <TouchableOpacity onPress={() =>
-          style = global.style.theme1}
-      >
+      <TouchableOpacity onPress={() => this.changeTheme("default")}>
         <Image
           style={global.style.themeImage}
           source={require('../assets/char1.png')}
@@ -22,7 +22,7 @@ class ThemeScreen extends Component {
       </TouchableOpacity>
 
       <Text style={global.style.responseText}>Theme #2</Text>
-      <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
+      <TouchableOpacity onPress={() => this.changeTheme("default")}>
         <Image
           style={global.style.themeImage}
           source={require('../assets/char2.png')}
@@ -30,7 +30,7 @@ class ThemeScreen extends Component {
       </TouchableOpacity>
 
       <Text style={global.style.responseText}>Theme #3</Text>
-      <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
+      <TouchableOpacity onPress={() => this.changeTheme("default")}>
         <Image
           style={global.style.themeImage}
           source={require('../assets/char3.png')}
@@ -38,7 +38,7 @@ class ThemeScreen extends Component {
       </TouchableOpacity>
 
       <Text style={global.style.responseText}>Theme #4</Text>
-      <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
+      <TouchableOpacity onPress={() => this.changeTheme("default")}>
         <Image
           style={global.style.themeImage}
           source={require('../assets/char4.png')}

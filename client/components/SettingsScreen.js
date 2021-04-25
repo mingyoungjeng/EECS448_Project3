@@ -8,10 +8,6 @@ class SettingsScreen extends Component {
     super(props);
   }
 
-  selectTheme(theme) {
-    global.style = StyleSheet.create(require('../styles/' + theme + '.json'));
-  }
-
   logOut = async () => {
     await AsyncStorage.removeItem('token')
       .then(token => {
@@ -36,7 +32,6 @@ class SettingsScreen extends Component {
 
         <TouchableOpacity
           style={global.style.defaultButtonContainer}
-          // onPress = {() => this.selectTheme("default")}
           onPress={() => this.props.navigation.navigate('Theme')}
           >
           <Text style={global.style.menuText}>Change Theme?</Text>
