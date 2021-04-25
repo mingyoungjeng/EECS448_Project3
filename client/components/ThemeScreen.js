@@ -1,18 +1,22 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView,ImageBackground, TouchableOpacity, Alert, FlatList, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useIsFocused } from '@react-navigation/native';
 
 class ThemeScreen extends Component {
 
   // Sets the global style of the app
-  changeTheme(theme) {
-    global.style = StyleSheet.create(require('../styles/' + theme + '.json'));
+  async changeTheme(theme) {
+    global.style = await StyleSheet.create(require('../styles/' + theme + '.json'));
     this.setState({});
   }
 
   // Displays menu of possible themes to choose from
+
   render() {
+    const {isFocused} = this.props;
     return (
+
       <SafeAreaView style={global.style.container}>
 
 
@@ -64,6 +68,10 @@ class ThemeScreen extends Component {
     );
   }
 
+  
 }
+export default function(props) {
+  const isFocused = useIsFocused();
 
-export default ThemeScreen
+  return <ThemeScreen {...props} isFocused={isFocused} />
+}

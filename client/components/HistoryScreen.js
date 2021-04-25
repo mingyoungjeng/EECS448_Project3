@@ -64,24 +64,23 @@ class HistoryScreen extends Component {
 
           var dots = {};
           if (x.condition === "bad") {
-            dots.selected = true;
-            dots.selectedColor = "red";
+            dots = global.style.bad;
           }
           if (x.condition === "medium") {
-            dots.selected = true;
-            dots.selectedColor = "gray";
+            dots = global.style.medium;
           }
           if (x.condition === "good") {
-            dots.selected = true;
-            dots.selectedColor = "green";
+            dots = global.style.good;
           }
 
           markedDates[dateString] = dots;
+          console.log(dots);
         }
       })
       .catch((err) => console.log(err));
     this.state.markers = markedDates;
     console.log(markedDates);
+    // console.log(global.style.138)
     this.forceUpdate();
   }
 

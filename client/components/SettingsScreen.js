@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
+
 
 // Displays different user settings.
 class SettingsScreen extends Component {
@@ -19,7 +21,13 @@ class SettingsScreen extends Component {
       .catch(err => console.log(err));
   }
 
+  componentDidMount() {
+    this.forceUpdate();
+  }
+
   render() {
+    const { isFocused } = this.props;
+
     return (
       <SafeAreaView style={global.style.container}>
         <Text style={global.style.contentText}>Adjust your settings here</Text>
@@ -49,4 +57,8 @@ class SettingsScreen extends Component {
   }
 }
 
-export default SettingsScreen
+export default function(props) {
+  const isFocused = useIsFocused();
+
+  return <SettingsScreen {...props} isFocused={isFocused} />
+}
