@@ -35,7 +35,7 @@ class ContentScreen extends Component {
     return searchTerms[condition][Math.floor(Math.random() * searchTerms[condition].length)];
   }
 
-  // Retrieves a new image 
+  // Retrieves a new image
   // 04/21/2021 - Refactor old code
   getNewImage = async (inputkey) => {
     console.log(`inputkey = ${inputkey}`);
@@ -57,10 +57,10 @@ class ContentScreen extends Component {
   }
 
   sendData = async (keyword, data) => {
-    await axios.post('http://localhost:5000/api/data', 
+    await axios.post('http://localhost:5000/api/data',
     {
       keyword: keyword,
-      data: data      
+      data: data
     })
       .then(result => console.log(result))
       .catch(error => console.log(error));
@@ -68,14 +68,17 @@ class ContentScreen extends Component {
 
   async storeCondition() {
     console.log("Storing condition");
-    let token = await AsyncStorage.getItem('token');
-    token = JSON.parse(token);
-    axios.post('http://localhost:5000/api/history', {
-        condition: this.state.condition
-      }, {
-      headers: {
-      'x-auth-token': token.data
-    }})
+    await AsyncStorage.getItem('token')
+      .then(token => {
+        token = JSON.parse(token);
+        axios.post('http://localhost:5000/api/history', {
+            condition: this.state.condition
+          }, {
+          headers: {
+          'x-auth-token': token.data
+        }})
+      })
+      .catch(err => console.log(`Could not store condition: ${err}`));
   }
 
   render() {
@@ -102,25 +105,26 @@ class ContentScreen extends Component {
         />
 
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity 
+        <TouchableOpacity
         style={global.style.defaultButtonContainer}
         onPress={() => {
-          if (!this.state.done) {
+          if (!this.state.done && this.state.route) {
             console.log("Sending data...");
+            console.log(this.props);
             this.sendData(this.state.keyword, this.props.route.params.data);
             this.setState({ done: true });
-          }
+          } 
           this.getNewImage();
         }}
         >
-          <Text>Thumbs Up</Text>
+          <Text style={global.style.responseText}>Thumbs Up</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity 
+        <TouchableOpacity
         style={global.style.defaultButtonContainer}
         onPress={() => this.getNewImage()}
         >
-          <Text>Thumbs Down</Text>
+          <Text style={global.style.responseText}>Thumbs Down</Text>
         </TouchableOpacity>
       </View>
 

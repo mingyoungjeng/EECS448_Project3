@@ -3,12 +3,12 @@
     "width":640,
     "height":800,
     "flex":1,
-    "backgroundColor":"#fff",
+    "backgroundColor":"#86F6F6",
     "alignItems":"center",
     "justifyContent":"center"
   },
   "surveyContainer":{
-    "backgroundColor":"#aaa",
+    "backgroundColor":"#E6E3E3",
     "widthType":"percentage",
     "width":"80%",
     "borderRadius":10,
@@ -18,54 +18,94 @@
   "responseContainer":{
     "elevation":8,
     "color":"#fff",
-    "backgroundColor":"#bbb",
+    "backgroundColor":"#E6E3E3",
     "borderRadius":10,
     "borderWidth":3,
     "paddingVertical":10,
     "paddingHorizontal":12,
     "marginLeft":"20px",
-    "margin":"5px"
+    "margin":"5px",
+    "fontFamily": "HiraMinProN-W6"
   },
   "defaultButtonContainer":{
     "color":"#fff",
-    "backgroundColor":"#ddd",
+    "backgroundColor":"#FEA88E",
     "paddingVertical":12,
     "paddingHorizontal":20,
     "margin":"10px",
     "borderRadius":10,
     "borderWidth":5,
-    "borderColor":"black"
+    "borderColor":"black",
+    "fontFamily": "HiraMinProN-W6"
   },
   "textContentContainer":{
-    "backgroundColor":"#aaa",
+    "backgroundColor":"#EAF2F2",
     "widthType":"percentage",
     "width":"80%",
     "margin":"10px",
     "borderRadius":10,
     "borderWidth":5,
-    "padding":"10px"
+    "padding":"10px",
+    "fontFamily": "HiraMinProN-W6"
   },
   "titleText":{
-    "fontSize":40,
-    "fontWeight":"bold"
+    "fontSize":60,
+    "fontWeight":"bold",
+    "fontStyle": "italic",
+    "fontFamily": "HiraMinProN-W6",
+    "textAlign":"center"
   },
   "menuText":{
     "fontSize":20,
-    "fontWeight":"bold"
+    "fontWeight":"bold",
+    "fontFamily": "HiraMinProN-W6",
+    "textAlign":"center"
   },
   "questionText":{
     "fontSize":20,
-    "marginBottom":"10px"
+    "textAlign": "center",
+    "marginBottom":"10px",
+    "fontFamily": "HiraMinProN-W6"
   },
   "responseText":{
-    "fontSize":15
+    "fontSize":15,
+    "fontFamily": "HiraMinProN-W6"
   },
   "contentText":{
     "fontSize":30,
-    "fontWeight":"bold"
+    "fontWeight":"bold",
+    "textAlign": "center",
+    "fontFamily": "HiraMinProN-W6"
   },
   "image":{
     "width":300,
-    "height":300
+    "height":300,
+    "borderRadius":10,
+    "borderWidth":5,
+    "borderColor":"black"
+  },
+  "themeImage":{
+    "width":150,
+    "height":150,
+    "borderRadius":10,
+    "borderWidth":5,
+    "borderColor":"black"
+  },
+  "NextText":{
+    "fontSize":20,
+    "textAlign": "center",
+    "fontFamily": "HiraMinProN-W6",
+    "fontWeight":"bold"
+  },
+  "theme1": {
+    "StyleSheet":"absoluteFillObject",
+    "backgroundColor": "green"
+  },
+  "icon": {
+    "width":200,
+    "height":200,
+    "position": "absolute",
+    "bottom" : 0,
+    "right":0
   }
 }

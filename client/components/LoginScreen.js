@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
+import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Set up clientside encryption
@@ -12,7 +12,7 @@ const saltRounds = 10;
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       username: "daniel",
       email: "bishop",
       password: "wadsworth",
@@ -23,11 +23,11 @@ class LoginScreen extends Component {
   // Use something like this if we start to get different kinds of errors from different sources.
   getReply = (reply) => {
     var defaultReply = "Bad credentials";
-    if (reply.data.message) {
+    if (reply.data && reply.data.message) {
       defaultReply = reply.data.message;
     } else if (reply.username) {
       defaultReply = `Welcome back ${reply.username}`;
-    } else {
+    } else if (reply.message) {
       defaultReply = reply.message;
     }
     return defaultReply;
@@ -45,12 +45,13 @@ class LoginScreen extends Component {
       password: password
     })
     .then(
-      // 
-      result => {console.log(`post response = ${JSON.stringify(result.data.message)}`); this.setState({ reply: this.getReply(result) });}
-    )
-    .catch(err => console.log(err));
+      result => {
+        // console.log(`post response = ${JSON.stringify(result.data.message)}`);
+        this.setState({ reply: this.getReply(result) });
+      })
+    .catch(err => {console.log(err); this.setState({ reply: this.getReply(err) });});
     // .catch(err => this.setState(err.message.value))
-          
+
   }
 
   render() {
@@ -58,7 +59,7 @@ class LoginScreen extends Component {
       <SafeAreaView style={global.style.container}>
 
       <View style={global.style.textContentContainer}>
-        <Text> Login or Register Below </Text>
+        <Text style={global.style.menuText}> Login or Register Below: </Text>
       </View>
 
       <TextInput style={global.style.textContentContainer}
@@ -81,7 +82,7 @@ class LoginScreen extends Component {
         {this.state.reply}
       </Text>
 
-     
+
 
       <TouchableOpacity
         style={global.style.defaultButtonContainer}
@@ -91,10 +92,10 @@ class LoginScreen extends Component {
           this.register(username, email, password);
         }}
       >
-      <Text>Register</Text>
+      <Text style={global.style.menuText}>Register</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity 
+      <TouchableOpacity
         style={ global.style.defaultButtonContainer }
         onPress = {() => {
           console.log("Retrieving info...");
@@ -113,10 +114,11 @@ class LoginScreen extends Component {
             .catch(err => console.error(err));
         }}
       >
-      <Text>Login</Text>
+      <Text style={global.style.menuText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity 
+      <View style= {{display: "none"}}>
+      <TouchableOpacity
         style={ global.style.defaultButtonContainer }
         onPress = {async () => {
           let token = await AsyncStorage.getItem('token')
@@ -125,7 +127,7 @@ class LoginScreen extends Component {
           if (token) {
             token = JSON.parse(token);
             console.log(token);
-  
+
             console.log("Retrieving info...");
             axios.get('http://localhost:5000/api/users/me', {
               params: {
@@ -140,8 +142,9 @@ class LoginScreen extends Component {
           }
         }}
       >
-      <Text>Get info</Text>
+      <Text style={global.style.menuText}>Get info</Text>
       </TouchableOpacity>
+      </View>
 
       <TouchableOpacity
         style={global.style.defaultButtonContainer}

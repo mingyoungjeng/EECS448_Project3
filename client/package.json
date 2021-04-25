@@ -31,13 +31,18 @@
     "@babel/core": "^7.9.0",
     "@babel/plugin-syntax-jsx": "^7.12.13",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest-circus": "^26.6.3",
     "jest-expo": "^41.0.0",
     "testing-library": "^0.0.2"
   },
   "private": true,
   "jest": {
-    "preset": "jest-expo/web"
+    "preset": "jest-expo/web",
+    "moduleNameMapper": {
+      "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
   },
   "babel": {
     "presets": [
