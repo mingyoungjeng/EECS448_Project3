@@ -11,7 +11,8 @@
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "test": "cd client && npm run test",
-    "servertest": "jest ./users.test.js"
+    "servertest": "jest ./routes/api/users.test.js",
+    "postservertest": "npm run test"
   },
   "repository": {
     "type": "git",

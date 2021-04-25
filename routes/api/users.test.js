@@ -1,16 +1,30 @@
-const app = require('./server');
+/**
+ * @jest-environment node
+ */
+
+const app = require('../../network');
 const request = require('supertest');
-const User = require('./models/User');
+const User = require('../../models/User');
+const mongoose = require('mongoose');
 
 let server;
 
+beforeEach(() => { server = require('../../network').listen(); });
+
+afterEach( async () => { 
+  await User.remove({});
+  server.close(); 
+});
+  
+afterAll(async () => {
+  if (server) {
+    await server.close();
+  }
+  mongoose.disconnect();
+});
+
 describe('/api/users', () => {
   // Make sure the server starts and stops before each test
-  beforeEach(() => { server = require('./server').listen(); });
-  afterEach( async () => { 
-    server.close(); 
-    await User.remove({});
-  });
 
   describe('GET /', () =>{
     it('should return all users with status 200', async () => {
@@ -24,6 +38,7 @@ describe('/api/users', () => {
       expect(response.body.some(res => res.username === 'user1')).toBeTruthy();
       expect(response.body.some(res => res.username === 'user2')).toBeTruthy();
     });
+  });
 
     
     describe('GET /:id', () => {
@@ -37,8 +52,7 @@ describe('/api/users', () => {
         const res = await request(app).get(url);
         expect(res.statusCode).toBe(404);
       }); 
-    })     
-  });
+    });     
 
   describe('POST /', () => {
     it('should return new user with status 200', async () => {
