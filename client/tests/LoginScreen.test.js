@@ -19,6 +19,7 @@ it("renders", () => {
 	render(<LoginScreen/>);
 });
 
+// tests register button is user already exists
 it("registers existing user", () => {
   axios.post.mockResolvedValue(message);
 	const {getByPlaceholderText, getByText} = render(<LoginScreen/>);
@@ -38,6 +39,7 @@ it("registers existing user", () => {
   	getByText("Duplicate user");
 });
 
+// Logins in existing user
 it("logs in", () => {
 	const {getByPlaceholderText, getByText} = render(<LoginScreen/>);
 

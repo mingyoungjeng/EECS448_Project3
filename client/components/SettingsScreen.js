@@ -2,12 +2,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
 
-
+// Displays different user settings.
 class SettingsScreen extends Component {
   constructor(props) {
     super(props);
   }
 
+  // Removes the user token from async storage, thus logging out.
   logOut = async () => {
     await AsyncStorage.removeItem('token')
       .then(token => {

@@ -10,10 +10,12 @@ global.style = StyleSheet.create(require('../styles/default.json'));
 jest.mock('axios');
 jest.mock('@react-native-async-storage/async-storage');
 
+// Example token for an existing user
 const token = JSON.stringify({
     data: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdjYTZhMTBhNjE1ODM2ZDhkNjQyMWQiLCJpYXQiOjE2MTkxOTI3NTZ9.Be78qf5e8S9e_ExCzyeEFi6Rwi0qx9ToWj7mOckqTM4"
 });
 
+// Test historical data
 const history = {
     data: {
         history: [{
@@ -76,28 +78,20 @@ const history = {
     }
 };
 
-it("renders history", () => {
-  AsyncStorage.getItem.mockResolvedValue(token);
-  axios.get.mockResolvedValue(history);
+// Tests if history screen renders properly when logged in
+it("renders history (logged in)", () => {
+    AsyncStorage.getItem.mockResolvedValue(token);
+    axios.get.mockResolvedValue(history);
 
-	render(<HistoryScreen/>);
+    render(<HistoryScreen/>);
 });
 
-// it("logs in", () => {
-// 	const {getByPlaceholderText, getByText} = render(<LoginScreen/>);
+// Tests if history screen renders properly when not logged in
+it("renders history (logged out)", () => {
+    AsyncStorage.getItem.mockResolvedValue(null);
+    axios.get.mockResolvedValue(history);
 
-// 	const username = getByPlaceholderText('username');
-//   	fireEvent.changeText(username, "bbbbb");
-
-//   	const email = getByPlaceholderText('email');
-//   	fireEvent.changeText(email, "bbbbb");
-
-//   	const password = getByPlaceholderText('password');
-//   	fireEvent.changeText(password, "bbbbb");
-
-//   	const button = getByText('Login');
-//   	fireEvent.press(button);
-// });
-
+    render(<HistoryScreen/>);
+});
 
 // History Screen

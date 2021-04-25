@@ -35,6 +35,7 @@ it("renders survey", () => {
 	render(<SurveyScreen/>);
 });
 
+// Navigates through survey by pressing next.
 it("allows navigation", () => {
 	const {getByText} = render(<SurveyScreen/>);
 
@@ -53,7 +54,7 @@ it("displays reply when button clicked", () => {
 	getByText("Oh that's interesting to hear.");
 });
 
-
+// Navigates to content screen (doesn't crash) after survey
 it("renders ContentScreen when survey is finished", () => {
 	
 	AsyncStorage.getItem.mockResolvedValue(token);
@@ -72,6 +73,7 @@ it("renders ContentScreen when survey is finished", () => {
 	fireEvent.press(button1);
 });
 
+// renders content screen directly
 it("renders content", () => {
 	AsyncStorage.getItem.mockResolvedValue(token);
 	axios.get.mockResolvedValue(history);

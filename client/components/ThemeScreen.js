@@ -4,11 +4,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class ThemeScreen extends Component {
 
+  // Sets the global style of the app
   changeTheme(theme) {
     global.style = StyleSheet.create(require('../styles/' + theme + '.json'));
     this.setState({});
   }
 
+  // Displays menu of possible themes to choose from
   render() {
     return (
       <SafeAreaView style={global.style.container}>
