@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, FlatList, Image, TouchableHighlightBase } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -12,7 +12,7 @@ let searchTerms = {
 
 // Displays relevant / helpful gif from GIPHY based on survey response.
 class ContentScreen extends Component {
-  state = {gif: "", condition: "", keyword: "", done: false};
+  state = {gif: "", condition: "", keyword: "", done: false, trendingIndex: 0, trendingInit: false};
 
   // Reads condition of user
   componentDidMount() {
@@ -56,6 +56,22 @@ class ContentScreen extends Component {
         console.log(this.state.gif);
       })
       .catch(error => console.log(error));
+  }
+
+  getTrendingImage = async () => {
+      await axios.get("https://api.giphy.com/v1/gifs/trending?api_key=FxNx8bWzHL1OToRmoQb7vAUEIqhgKCHo&s")
+        .then(res => {
+          console.log(res.data);
+          this.setState({ gif: res.data.data[this.state.trendingIndex]});
+          this.setState({ trendingLength: res.data.data.length })
+          // console.log(this.state.gif);
+        })
+        .catch(error => console.log(error));
+
+        // Calculate new trending index (js modular arithmetic = QQ)
+        const newTrendingIndex = (this.state.trendingIndex + 1) % this.state.trendingLength;
+
+        this.setState({ trendingIndex: newTrendingIndex });
   }
 
   sendData = async (keyword, data) => {
@@ -126,7 +142,11 @@ class ContentScreen extends Component {
 
         <TouchableOpacity
         style={global.style.defaultButtonContainer}
-        onPress={() => this.getNewImage()}
+        onPress={() => {
+          if (!this.state.trendingInit) {
+            this.setState({ trendingInit: false });
+          }
+          this.getTrendingImage();}}
         >
           <Text style={global.style.responseText}>Thumbs Down</Text>
         </TouchableOpacity>
