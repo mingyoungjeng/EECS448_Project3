@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
+// Two components: 
+//     condition: "bad", "neutral", or "good"
+//     date: the current date and time
 const HistorySchema = new Schema({
     condition: {
         type: String,

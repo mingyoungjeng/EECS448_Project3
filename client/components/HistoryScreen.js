@@ -9,6 +9,7 @@ const bad = {key:'bad', color: 'red'};
 const medium = {key:'medium', color: 'yellow'}; // selectedDotColor: 'blue'}
 const good = {key:'good', color: 'green'};
 
+// Displays Calendar of the user's condition in the past to record progress over time.
 class HistoryScreen extends Component {
   constructor(props) {
     super(props);
@@ -17,10 +18,13 @@ class HistoryScreen extends Component {
     };
   }
 
+  // getHistory is async, but componentDidMount isn't
   componentDidMount() {
     this.getHistory();
   }
 
+  // Retrieves the historival data for logged in user.
+  // Gives error message if user isn't logged in.
   async getHistory() {
     let markedDates = {};
 
@@ -81,6 +85,7 @@ class HistoryScreen extends Component {
     this.forceUpdate();
   }
 
+  // Renders calendar
   render() {
     return (
       <SafeAreaView style={global.style.container}>

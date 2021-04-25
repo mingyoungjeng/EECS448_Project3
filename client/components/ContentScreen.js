@@ -10,9 +10,11 @@ let searchTerms = {
   "good": ["good job", "cool"]
 }
 
+// Displays relevant / helpful gif from GIPHY based on survey response.
 class ContentScreen extends Component {
   state = {gif: "", condition: "", keyword: "", done: false};
 
+  // Reads condition of user
   componentDidMount() {
     console.log(this.props.route);
     this.storeCondition();
@@ -66,6 +68,7 @@ class ContentScreen extends Component {
       .catch(error => console.log(error));
   }
 
+  // Stores the user's condition for the day in the database
   async storeCondition() {
     console.log("Storing condition");
     await AsyncStorage.getItem('token')
@@ -82,7 +85,7 @@ class ContentScreen extends Component {
   }
 
   render() {
-
+    // Displays loading while waiting for gid.
     if (this.state.gif === "") {
       return (
         <SafeAreaView style={global.style.container}>
@@ -93,6 +96,7 @@ class ContentScreen extends Component {
       );
     }
 
+    // Renders gif and little motivational message
     return (
       <SafeAreaView style={global.style.container}>
         <View style={global.style.textContentContainer}>

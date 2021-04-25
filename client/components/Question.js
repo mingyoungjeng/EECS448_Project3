@@ -43,6 +43,7 @@ const questions = {
   },
 }
 
+// Displays a question and list of responses.
 class Question extends Component {
   constructor(props) {
     super(props);
@@ -53,11 +54,15 @@ class Question extends Component {
     };
   }
 
+  // Called when response is pressed. 
+  // Records the response to calculate avg at end of survey. 
+  // Reveals a reply once reply is pressed.
   revealText = (weight, max) => {
     this.state.responses.push(weight/(max-1));
     this.setState({ reply: "Oh that's interesting to hear." });
   };
 
+  // Responsible for rendering all the answer buttons
   renderResponses = () => {
     console.log('rendering responses');
     var responses = "";
@@ -84,6 +89,7 @@ class Question extends Component {
 
   }
 
+  // Responsible for rendering the question
   renderQuestion = () => {
     console.log('Rendering question');
     var prompt = "";
@@ -109,6 +115,7 @@ class Question extends Component {
             const newNum = this.state.question + 1;
             this.setState({ question: newNum});
             this.setState({ reply: ""});
+            // Navigates to content screen once survey is finished with determined condition from responses.
             if (newNum >= Object.keys(questions).length ) {
               let avg = 0;
               for (var i of this.state.responses) {

@@ -11,6 +11,7 @@ it("renders settings", () => {
 	render(<SettingsScreen/>);
 });
 
+// Tries changing the theme
 it("changes theme", () => {
 	const {getByText} = render(<App/>);
 

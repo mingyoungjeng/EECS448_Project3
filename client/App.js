@@ -13,9 +13,10 @@ import LoginScreen from './components/LoginScreen';
 import ThemeScreen from './components/ThemeScreen';
 
 
-const Stack = createStackNavigator();
-global.style = StyleSheet.create(require('./styles/default.json'));
+const Stack = createStackNavigator(); // Navigation
+global.style = StyleSheet.create(require('./styles/default.json')); // Defines theme for app
 
+// Creates navigation stack and starting point of app (TitleScreen)
 class App extends Component {
 
   render() {

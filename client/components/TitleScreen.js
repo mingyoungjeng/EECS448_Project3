@@ -6,6 +6,7 @@ const uuid = require('uuid');
 
 class TitleScreen extends Component {
   render() {
+    // Displays navigation menu to different components of the app.
     return (
       <SafeAreaView style={global.style.container}>
         <Text style={global.style.titleText}>cian</Text>
