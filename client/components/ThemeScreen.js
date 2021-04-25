@@ -17,7 +17,7 @@ class ThemeScreen extends Component {
       >
         <Image
           style={global.style.themeImage}
-          source={require('./icons/favicon.png')}
+          source={require('./icons/char1.png')}
         />
       </TouchableOpacity>
 
@@ -25,7 +25,7 @@ class ThemeScreen extends Component {
       <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
         <Image
           style={global.style.themeImage}
-          source={require('./icons/favicon.png')}
+          source={require('./icons/char2.png')}
         />
       </TouchableOpacity>
 
@@ -33,7 +33,7 @@ class ThemeScreen extends Component {
       <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
         <Image
           style={global.style.themeImage}
-          source={require('./icons/favicon.png')}
+          source={require('./icons/char3.png')}
         />
       </TouchableOpacity>
 
@@ -41,7 +41,7 @@ class ThemeScreen extends Component {
       <TouchableOpacity onPress={() => Alert.alert('image clicked')}>
         <Image
           style={global.style.themeImage}
-          source={require('./icons/favicon.png')}
+          source={require('./icons/char4.png')}
         />
       </TouchableOpacity>
 
@@ -58,7 +58,7 @@ class ThemeScreen extends Component {
 
       <ImageBackground
         style={global.style.icon}
-        source={require('./icons/favicon.png')}
+        source={require('./icons/char1.png')}
       />
 
       </SafeAreaView>
