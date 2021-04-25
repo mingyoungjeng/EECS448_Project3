@@ -7,6 +7,7 @@ class ThemeScreen extends Component {
   // Sets the global style of the app
   changeTheme(theme) {
     global.style = StyleSheet.create(require('../styles/' + theme + '.json'));
+    this.setState({});
   }
 
   // Displays menu of possible themes to choose from
@@ -16,7 +17,7 @@ class ThemeScreen extends Component {
 
 
       <Text style={global.style.responseText}>Theme #1</Text>
-      <TouchableOpacity onPress={() => this.changeTheme("default")}>
+      <TouchableOpacity onPress={() => this.changeTheme("theme1")}>
         <Image
           style={global.style.themeImage}
           source={require('../assets/char1.png')}
@@ -24,7 +25,7 @@ class ThemeScreen extends Component {
       </TouchableOpacity>
 
       <Text style={global.style.responseText}>Theme #2</Text>
-      <TouchableOpacity onPress={() => this.changeTheme("default")}>
+      <TouchableOpacity onPress={() => this.changeTheme("theme2")}>
         <Image
           style={global.style.themeImage}
           source={require('../assets/char2.png')}
@@ -32,7 +33,7 @@ class ThemeScreen extends Component {
       </TouchableOpacity>
 
       <Text style={global.style.responseText}>Theme #3</Text>
-      <TouchableOpacity onPress={() => this.changeTheme("default")}>
+      <TouchableOpacity onPress={() => this.changeTheme("theme3")}>
         <Image
           style={global.style.themeImage}
           source={require('../assets/char3.png')}
@@ -40,7 +41,7 @@ class ThemeScreen extends Component {
       </TouchableOpacity>
 
       <Text style={global.style.responseText}>Theme #4</Text>
-      <TouchableOpacity onPress={() => this.changeTheme("default")}>
+      <TouchableOpacity onPress={() => this.changeTheme("theme4")}>
         <Image
           style={global.style.themeImage}
           source={require('../assets/char4.png')}

@@ -2,14 +2,14 @@
  * @jest-environment node
  */
 
- const app = require('../../network');
+ const app = require('../../../network');
  const request = require('supertest');
- const Datum = require('../../models/Datum');
+ const Datum = require('../../../models/Datum');
  const mongoose = require('mongoose');
  
  let server;
  
- beforeEach(() => { server = require('../../network').listen(); });
+ beforeEach(() => { server = require('../../../network').listen(); });
  
  afterEach( async () => { 
    await Datum.remove({});

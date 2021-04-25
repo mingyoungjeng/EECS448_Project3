@@ -1,10 +1,10 @@
 {
-  "name" : "default",
+  "name":"theme2",
   "container":{
     "width":640,
     "height":800,
     "flex":1,
-    "backgroundColor":"#86F6F6",
+    "backgroundColor":"#FCB5FF",
     "alignItems":"center",
     "justifyContent":"center"
   },
@@ -30,7 +30,7 @@
   },
   "defaultButtonContainer":{
     "color":"#fff",
-    "backgroundColor":"#FEA88E",
+    "backgroundColor":"#92FFE1",
     "paddingVertical":12,
     "paddingHorizontal":20,
     "margin":"10px",
@@ -103,6 +103,7 @@
     "height":200,
     "position": "absolute",
     "bottom" : 0,
-    "right":0
+    "right":0,
+    "ImageBackground":"../assets/char2.png"
   }
 }

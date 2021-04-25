@@ -3,9 +3,9 @@
  */
 
 
-const app = require('../../network');
+const app = require('../../../network');
 const request = require('supertest');
-const User = require('../../models/User');
+const User = require('../../../models/User');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
  
@@ -17,7 +17,7 @@ const tempUser = {
 };
  
 beforeEach( async () => { 
-    server = require('../../network').listen();
+    server = require('../../../network').listen();
     // Create a user in the database so that we have something to compare against
     
     });
@@ -157,7 +157,7 @@ describe('/api/authorization', () => {
                 username: "partyguy",
                 email: "goodtimes@email.com",
                 password: '12345678cantcrackthis'
-            });
+            }); 
             await bcrypt.hash(user.password, 10)
             .then(hash => {
                 user.password = hash;})
