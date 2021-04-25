@@ -8,6 +8,7 @@ class ThemeScreen extends Component {
   // Sets the global style of the app
   async changeTheme(theme) {
     global.style = await StyleSheet.create(require('../styles/' + theme + '.json'));
+    global.themeName = theme;
     this.setState({});
   }
 

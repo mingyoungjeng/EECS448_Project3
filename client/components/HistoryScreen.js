@@ -44,7 +44,14 @@ class HistoryScreen extends Component {
       headers: {
       'x-auth-token': token.data
     }})
-      .then(function (res) {
+      .then(async function (res) {
+        // Load marker themes from appropriate theme#.json file
+        if (!global.themeName) {global.themeName = 'default'};
+        const theme = await require('../styles/' + global.themeName + '.json');
+        // Can we use objec destructuring here?
+        // const {good, medium, bad} = require('../styles/theme3.json');
+        console.log(theme);
+
         console.log(res);
         for (var x of res.data.history) {
           var date = new Date(x.date);
@@ -64,13 +71,13 @@ class HistoryScreen extends Component {
 
           var dots = {};
           if (x.condition === "bad") {
-            dots = global.style.bad;
+            dots = theme.bad;
           }
           if (x.condition === "medium") {
-            dots = global.style.medium;
+            dots = theme.medium;
           }
           if (x.condition === "good") {
-            dots = global.style.good;
+            dots = theme.good;
           }
 
           markedDates[dateString] = dots;

@@ -109,5 +109,17 @@
     "position": "absolute",
     "bottom" : 0,
     "right":0
+  },
+  "good": {
+    "selected": true,
+    "selectedColor": "gray"
+  },
+  "bad": {
+    "selected": true,
+    "selectedColor": "green"
+  },
+  "medium": {
+    "selected": true,
+    "selectedColor": "purple"
   }
 }

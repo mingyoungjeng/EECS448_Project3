@@ -110,5 +110,17 @@
     "bottom" : 0,
     "right":0,
     "ImageBackground":"../assets/char2.png"
+  },
+  "good": {
+    "selected": true,
+    "selectedColor": "gray"
+  },
+  "bad": {
+    "selected": true,
+    "selectedColor": "green"
+  },
+  "medium": {
+    "selected": true,
+    "selectedColor": "purple"
   }
 }
