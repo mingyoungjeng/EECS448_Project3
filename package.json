@@ -10,9 +10,10 @@
     "server": "nodemon server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
-    "test": "cd client && npm run test",
-    "servertest": "jest ./routes/api/users.test.js",
-    "postservertest": "npm run test"
+    "test": "jest ./routes/api --runInBand",
+    "posttest": "cd client && npm run test",
+    "servertest": "jest ./routes/api/ --runInBand",
+    "clienttest": "cd client && npm run test"
   },
   "repository": {
     "type": "git",

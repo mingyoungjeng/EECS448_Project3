@@ -11,13 +11,10 @@ const History = require('../../models/History');
 const User = require('../../models/User');
 
 // GET api
+// This should really be '/:id'
+// a get request should return the whole history collection
 router.get('/', auth, (req, res) => {
     try {
-        // const payload = jwt.verify(token, 'privateKey');
-        // console.log('Got payload...');
-        // console.log(payload._id);
-        // userID = payload._id;
-
         User.findById(req.user, 'history')
             .populate("history")
             .exec((err, history) => {
@@ -51,7 +48,7 @@ router.post('/', auth, async (req, res) => {
                 console.log(err);
             } 
         })
-    .then((result) => {return res.json(result);})
+    .then((result) => {return res.status(200).json(result);})
     .catch(err => {return res.send(err);});
 });
 
