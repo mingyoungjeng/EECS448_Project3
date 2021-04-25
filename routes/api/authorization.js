@@ -16,16 +16,22 @@ router.post('/', async (req, res) => {
     var user;
 
     if (req.body.username) {
-        user = await User.findOne({ username: req.body.username });
+        user = await User.findOne({ username: req.body.username }).catch(error => {return res.status(400).json(error)});
     } else if (req.body.email) {
-        user = await User.findOne({ email: req.body.email });
+        user = await User.findOne({ email: req.body.email }).catch(error => {return res.status(400).json(error)});
     } else {
         console.log("No username or email entered...");
         return res.status(400).send('User not found');
     }
 
-    let validUser = (req.body.email == user.email || req.body.username == user.username);
-    if (!validUser) return res.status(400).send('Invalid credentials');
+    if (!user) {
+        return res.status(401).send({ message: "No user found by these credentials" });
+    }
+
+    console.log(`user = ${user}`);
+
+    let validUser = (req.body.username == user.username || req.body.email == user.email);
+    if (!validUser) return res.status(401).send('Invalid credentials');
 
     // Authenticate user password against hashed password
     // res.send(`${req.body.password}, ${user.password}`);
@@ -33,12 +39,12 @@ router.post('/', async (req, res) => {
         .then(result => { 
             if (result) {
                 const token = user.generateAuthToken();
-                res.send(token);
+                return res.status(200).send(token);
             } else {
-                res.send('Invalid password');
+                return res.status(401).send('Invalid password');
             }
          })
-        .catch(err => {return res.json(err)});
+        .catch(err => {return res.status(400).json(err)});
 });
 
 

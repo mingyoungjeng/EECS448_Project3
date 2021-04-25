@@ -23,11 +23,11 @@ class LoginScreen extends Component {
   // Use something like this if we start to get different kinds of errors from different sources.
   getReply = (reply) => {
     var defaultReply = "Bad credentials";
-    if (reply.data.message) {
+    if (reply.data && reply.data.message) {
       defaultReply = reply.data.message;
     } else if (reply.username) {
       defaultReply = `Welcome back ${reply.username}`;
-    } else {
+    } else if (reply.message) {
       defaultReply = reply.message;
     }
     return defaultReply;
@@ -45,9 +45,11 @@ class LoginScreen extends Component {
       password: password
     })
     .then(
-      result => {console.log(`post response = ${JSON.stringify(result.data.message)}`); this.setState({ reply: this.getReply(result) });}
-    )
-    .catch(err => console.log(err));
+      result => {
+        // console.log(`post response = ${JSON.stringify(result.data.message)}`);
+        this.setState({ reply: this.getReply(result) });
+      })
+    .catch(err => {console.log(err); this.setState({ reply: this.getReply(err) });});
     // .catch(err => this.setState(err.message.value))
 
   }
