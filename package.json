@@ -12,7 +12,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "test": "jest ./routes/api --runInBand",
     "posttest": "cd client && npm run test",
-    "servertest": "jest ./routes/api/ --runInBand",
+    "servertest": "jest ./routes/api/tests/ --runInBand",
     "clienttest": "cd client && npm run test"
   },
   "repository": {
@@ -43,10 +43,9 @@
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.12.13",
     "@babel/preset-react": "^7.13.13",
-    "babel-preset-react-native": "^4.0.1",
-    "jest-expo": "^41.0.0",
     "babel-preset": "^1.1.7",
     "babel-preset-expo": "^8.3.0",
+    "babel-preset-react-native": "^4.0.1",
     "config": "^3.3.6",
     "jest-expo": "^41.0.0",
     "supertest": "^6.1.3"

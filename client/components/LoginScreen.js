@@ -22,6 +22,7 @@ class LoginScreen extends Component {
 
   // Use something like this if we start to get different kinds of errors from different sources.
   getReply = (reply) => {
+    console.log(`reply = ${reply}`);
     var defaultReply = "Bad credentials";
     if (reply.data && reply.data.message) {
       defaultReply = reply.data.message;
@@ -46,10 +47,14 @@ class LoginScreen extends Component {
     })
     .then(
       result => {
-        // console.log(`post response = ${JSON.stringify(result.data.message)}`);
-        this.setState({ reply: this.getReply(result) });
+        console.log(`post response = ${JSON.stringify(result)}`);
+        this.setState({ reply: `Welcome ${username}` });
       })
-    .catch(err => {console.log(err); this.setState({ reply: this.getReply(err) });});
+    .catch(err => {
+      console.log(`register error = ${err}`); 
+      // this.setState({ reply: this.getReply(err) });
+      this.setState({ reply: err.message })
+    });
     // .catch(err => this.setState(err.message.value))
 
   }

@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
             newUser.password = hash
             newUser.save()
             .then(() => { console.log(newUser); return res.send(newUser.generateAuthToken())} )
-            .catch(err => {return res.status(409).json( {message: "Duplicate user" })})
+            .catch(err => {return res.status(409).json({ message: "Duplicate user" })})
         })
         .catch(err => {return res.status(409).json(err)});
     })
