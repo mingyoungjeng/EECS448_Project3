@@ -1,5 +1,6 @@
 {
   "name":"theme3",
+  "mascot": "char3",
   "container":{
     "width":640,
     "height":800,

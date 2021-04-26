@@ -21,8 +21,9 @@ it("changes theme", () => {
 	const button = getByText('Change Theme?');
   	fireEvent.press(button);
 
-  	const theme = getByText('Theme #2');
+  	const theme = getByText('theme2');
   	fireEvent.press(theme);
 
-  	expect(global.style.name).toBe('Theme #2');
+  	const name = StyleSheet.flatten(global.style.name);
+  	expect(name).toBe('theme2');
 });

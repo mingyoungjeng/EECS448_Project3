@@ -1,5 +1,6 @@
 {
   "name" : "default",
+  "mascot" : "char1",
   "container":{
     "width":640,
     "height":800,
