@@ -5,9 +5,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 let searchTerms = {
-  "bad": ["feel better", "inspiring", "hugs"],
-  "neutral": ["cute", "puppy"],
-  "good": ["good job", "cool"]
+  "bad": ["feel better", "inspiring", "hugs", "stay strong", "mood"],
+  "neutral": ["cute", "puppy", "kitten", "hello there"],
+  "good": ["good job", "cool", "awesome", "dab", "applause", "congratulations"]
 }
 
 // Displays relevant / helpful gif from GIPHY based on survey response.
@@ -22,7 +22,7 @@ class ContentScreen extends Component {
     try {
       condition = this.props.route.params.condition;
     } catch {
-      condition = 'bad';
+      condition = 'neutral';
     }
 
     this.setState({ condition: condition });
@@ -116,7 +116,7 @@ class ContentScreen extends Component {
     return (
       <SafeAreaView style={global.style.container}>
         <View style={global.style.textContentContainer}>
-          <Text style={global.style.contentText}>Go do whatever you need to do. Get off your phone already!</Text>
+          <Text style={global.style.contentText}>Alright, we'll jot that down for you. Here is a gif we selected based on your responses! What do you think?</Text>
         </View>
 
         <Image
@@ -134,7 +134,7 @@ class ContentScreen extends Component {
             this.sendData(this.state.keyword, this.props.route.params.data);
             this.setState({ done: true });
           } 
-          this.getNewImage();
+          this.getNewImage(this.getSearchTerm(this.state.condition));
         }}
         >
           <Text style={global.style.responseText}>Thumbs Up</Text>
