@@ -74,8 +74,10 @@ class App extends Component {
           </Stack.Navigator>
 
           <ImageBackground
+            name="mascot"
             style={global.style.icon}
             source={require('./assets/char1.png')}
+            options={{ title:"mascot" }}
           />
       </NavigationContainer>
     );
