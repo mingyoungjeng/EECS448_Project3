@@ -5,31 +5,30 @@ const questions = {
   'question0' : {
     'prompt': 'How would you describe your mood today?',
     'responses' : {
-      'response0': 'Jolly!',
-      'response1': 'Peaceful',
-      'response2': 'Peeved',
-      'response3': 'Depressed'
+      'response0': 'Depressed',
+      'response1': 'Annoyed',
+      'response2': 'Decent',
+      'response3': 'Joyful'
     }
   },
   'question1' : {
     'prompt': 'How are you doing?',
     'responses' : {
-      'response0': 'Great!',
-      'response1': 'Doing ok.',
-      'response2': 'Could be better.',
-      'response3': 'Not doing so hot.'
+      'response0': 'Not doing so hot.',
+      'response1': 'Could be better.',
+      'response2': 'Doing ok.',
+      'response3': 'Great!'
     }
   },
   'question2' : {
-    'prompt': 'Describe today in a color?',
+    'prompt': 'Do you think the future looks bright for you?',
     'responses' : {
-      'response0': 'Red',
-      'response1': 'Orange',
-      'response2': 'Yellow',
-      'response3': 'Green',
-      'response4': 'Blue',
-      'response5': 'Indigo',
-      'response6': 'Violet'
+      'response0': 'Not at all',
+      'response1': 'Doubtful.',
+      'response2': 'Unsure.',
+      'response3': 'One can hope.',
+      'response4': 'Confidently',
+      'response5': 'Without a doubt!',
     }
   },
   'question3' : {
@@ -48,8 +47,8 @@ class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reply: "",
       question: 0,
+      selectedButton: -1,
       responses: []
     };
   }
@@ -57,9 +56,10 @@ class Question extends Component {
   // Called when response is pressed. 
   // Records the response to calculate avg at end of survey. 
   // Reveals a reply once reply is pressed.
-  revealText = (weight, max) => {
-    this.state.responses.push(weight/(max-1));
-    this.setState({ reply: "Oh that's interesting to hear." });
+  btnPress = (index, max) => {
+    this.state.selectedButton = index;
+    this.state.responses[this.state.question] = index/(max-1);
+    this.forceUpdate();
   };
 
   // Responsible for rendering all the answer buttons
@@ -75,8 +75,10 @@ class Question extends Component {
         buttons.push(
           <TouchableOpacity
             key={j}
-            style={global.style.defaultButtonContainer}
-            onPress={() => this.revealText(j, temp.length)}>
+            style={this.state.selectedButton === j 
+              ? [global.style.defaultButtonContainer, {backgroundColor:"gray"}]
+              : global.style.defaultButtonContainer}
+            onPress={() => this.btnPress(j, temp.length)}>
 
             <Text style={global.style.responseText}>{responses[temp[i]]}</Text>
           </TouchableOpacity>
@@ -115,6 +117,7 @@ class Question extends Component {
             const newNum = this.state.question + 1;
             this.setState({ question: newNum});
             this.setState({ reply: ""});
+            this.setState({ selectedButton: -1});
             // Navigates to content screen once survey is finished with determined condition from responses.
             if (newNum >= Object.keys(questions).length ) {
               let avg = 0;
@@ -141,10 +144,6 @@ class Question extends Component {
           }}>
             <Text style={global.style.NextText}>Next</Text>
           </TouchableOpacity>
-        </View>
-
-        <View style={global.style.textContentContainer}>
-          <Text style={global.style.responseText}>{this.state.reply}</Text>
         </View>
 
       </>
