@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Alert, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, ImageBackground, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TitleScreen from './components/TitleScreen';
@@ -72,6 +72,11 @@ class App extends Component {
           />
 
           </Stack.Navigator>
+
+          <ImageBackground
+            style={global.style.icon}
+            source={require('./assets/char1.png')}
+          />
       </NavigationContainer>
     );
   }

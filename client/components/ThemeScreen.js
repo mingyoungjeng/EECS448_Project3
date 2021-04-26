@@ -69,7 +69,7 @@ class ThemeScreen extends Component {
     );
   }
 
-  
+
 }
 export default function(props) {
   const isFocused = useIsFocused();
