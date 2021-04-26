@@ -45,14 +45,15 @@ it("allows navigation", () => {
 	fireEvent.press(button1);
 });
 
-it("displays reply when button clicked", () => {
-	const {getByPlaceholderText, getByText} = render(<SurveyScreen/>);
+// THIS TEST IS NO LONGER VALID
+// it("displays reply when button clicked", () => {
+// 	const {getByPlaceholderText, getByText} = render(<SurveyScreen/>);
 
-	const button1 = getByText("Jolly!");
-	fireEvent.press(button1);
+// 	const button1 = getByText("Jolly!");
+// 	fireEvent.press(button1);
 
-	getByText("Oh that's interesting to hear.");
-});
+// 	getByText("Oh that's interesting to hear.");
+// });
 
 // Navigates to content screen (doesn't crash) after survey
 it("renders ContentScreen when survey is finished", () => {
