@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 const jwt = require('jsonwebtoken');
 const uuid = require('uuid');
 import { useIsFocused } from '@react-navigation/native';
@@ -14,7 +14,10 @@ class TitleScreen extends Component {
 
     return (
       <SafeAreaView style={global.style.container}>
-        <Text style={global.style.titleText}>cian</Text>
+        <Image
+          style={global.style.logo}
+          source={require("../assets/logo.png")}
+        />
 
         <TouchableOpacity
           style={global.style.defaultButtonContainer}
@@ -57,6 +60,11 @@ class TitleScreen extends Component {
           >
           <Text style={global.style.menuText}>Straight to the Funny Section!</Text>
         </TouchableOpacity>
+
+        <Image
+          style={global.style.icon}
+          source={global.mascot}
+        />
 
       </SafeAreaView>
     );

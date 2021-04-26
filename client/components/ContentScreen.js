@@ -158,6 +158,11 @@ class ContentScreen extends Component {
           >
           <Text style={global.style.menuText}>Return</Text>
         </TouchableOpacity>
+
+        <Image
+          style={global.style.icon}
+          source={global.mascot}
+        />
       </SafeAreaView>
     );
   }

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Alert, ImageBackground, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, Image, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TitleScreen from './components/TitleScreen';
@@ -15,9 +15,16 @@ import ThemeScreen from './components/ThemeScreen';
 
 const Stack = createStackNavigator(); // Navigation
 global.style = StyleSheet.create(require('./styles/default.json')); // Defines theme for app
+global.mascot = require('./assets/logo.png');
 
 // Creates navigation stack and starting point of app (TitleScreen)
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mascot: 'test',
+    };
+  }
 
   render() {
     return (
@@ -72,13 +79,6 @@ class App extends Component {
           />
 
           </Stack.Navigator>
-
-          <ImageBackground
-            name="mascot"
-            style={global.style.icon}
-            source={require('./assets/char1.png')}
-            options={{ title:"mascot" }}
-          />
       </NavigationContainer>
     );
   }

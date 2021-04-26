@@ -9,12 +9,17 @@ class ThemeScreen extends Component {
   async changeTheme(theme) {
     global.style = await StyleSheet.create(require('../styles/' + theme + '.json'));
     global.themeName = theme;
+
+    const m = StyleSheet.flatten(global.style.mascot);
+    global.mascot = require("../assets/" + m + ".png");
     this.setState({});
   }
 
   // Displays menu of possible themes to choose from
 
   render() {
+    console.log(this.props.navigation);
+
     const {isFocused} = this.props;
     return (
 
@@ -60,6 +65,10 @@ class ThemeScreen extends Component {
         <Text style={global.style.menuText}>Return</Text>
       </TouchableOpacity>
 
+      <Image
+        style={global.style.icon}
+        source={global.mascot}
+      />
       </SafeAreaView>
     );
   }

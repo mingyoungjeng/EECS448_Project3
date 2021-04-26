@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Button, Alert, Image } from 'react-native';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PropTypes from 'prop-types';
@@ -107,6 +107,10 @@ class HistoryScreen extends Component {
           <Text style={global.style.menuText}>Return</Text>
         </TouchableOpacity>
 
+        <Image
+          style={global.style.icon}
+          source={global.mascot}
+        />
       </SafeAreaView>
     );
   }
