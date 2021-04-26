@@ -112,14 +112,14 @@
   },
   "good": {
     "selected": true,
-    "selectedColor": "gray"
+    "selectedColor": "#90EE90"
   },
   "bad": {
     "selected": true,
-    "selectedColor": "gray"
+    "selectedColor": "#FF5858"
   },
   "medium": {
     "selected": true,
-    "selectedColor": "gray"
+    "selectedColor": "#FFFF58"
   }
 }
