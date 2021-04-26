@@ -60,11 +60,6 @@ class ThemeScreen extends Component {
         <Text style={global.style.menuText}>Return</Text>
       </TouchableOpacity>
 
-      <ImageBackground
-        style={global.style.icon}
-        source={require('../assets/char1.png')}
-      />
-
       </SafeAreaView>
     );
   }
