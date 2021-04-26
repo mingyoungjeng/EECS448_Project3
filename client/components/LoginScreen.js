@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, TextInput, Image } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -158,6 +158,11 @@ class LoginScreen extends Component {
         >
         <Text style={global.style.menuText}>Return</Text>
       </TouchableOpacity>
+
+        <Image
+          style={global.style.icon}
+          source={global.mascot}
+        />
       </SafeAreaView>
     );
   }

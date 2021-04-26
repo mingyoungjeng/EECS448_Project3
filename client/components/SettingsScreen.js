@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, Image } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 
 
@@ -52,6 +52,11 @@ class SettingsScreen extends Component {
           >
           <Text style={global.style.menuText} >Return</Text>
         </TouchableOpacity>
+
+        <Image
+          style={global.style.icon}
+          source={global.mascot}
+        />
       </SafeAreaView>
     );
   }

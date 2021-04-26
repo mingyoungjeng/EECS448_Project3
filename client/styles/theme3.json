@@ -111,6 +111,13 @@
     "bottom" : 0,
     "right":0
   },
+  "logo": {
+    "width":200,
+    "height":200,
+    "display":"block",
+    "margin-left": "auto",
+    "margin-right": "auto"
+  },
   "good": {
     "selected": true,
     "selectedColor": "#90EE90"
